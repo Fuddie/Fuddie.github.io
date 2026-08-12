@@ -37,7 +37,7 @@
         <div class="kpi"><span>Average wait time</span><strong>44.15 min</strong><small>arrival to consultation</small></div>
         <div class="kpi"><span>Admissions</span><strong>309</strong><small>inpatient events</small></div>
         <div class="kpi"><span>Average length of stay</span><strong>4.83 days</strong><small>synthetic benchmark</small></div>
-        <div class="kpi"><span>30-day readmission</span><strong>20.39%</strong><small>operational demo metric</small></div>
+        <div class="kpi"><span>30-day readmission</span><strong>22.18%</strong><small>complete 30-day follow-up</small></div>
         <div class="kpi"><span>Facilities</span><strong>5</strong><small>licensed capacity modelled</small></div>
       </div>
     </div>
@@ -61,7 +61,7 @@
       <article class="case-card"><h3>Data quality</h3><p>Tests cover primary keys, source relationships, appointment statuses, timing order, readmission consistency, percentage ranges and facility capacity. Test queries return the exact records that violate a rule.</p></article>
       <article class="case-card"><h3>Incremental appointment processing</h3><p>The appointment fact uses BigQuery MERGE logic and reprocesses a three-day window so recent delayed status updates can be captured without rebuilding the entire fact table.</p></article>
       <article class="case-card"><h3>Appointments vs encounters</h3><p>Appointments and encounters are separate because a booking can be completed, cancelled or missed. Only completed care activity becomes an encounter. This keeps scheduling metrics separate from consultation metrics.</p></article>
-      <article class="case-card"><h3>Readmission scope</h3><p>The 30-day readmission calculation is included as an operational modelling example. It is not presented as a clinical quality measure and does not apply diagnosis-based exclusions or risk adjustment.</p></article>
+      <article class="case-card"><h3>Readmission scope</h3><p>The readmission mart only includes discharges with a complete 30-day follow-up window. It is an operational modelling example, not a clinical quality measure, and does not apply diagnosis-based exclusions or risk adjustment.</p></article>
     </div>
   </section>
 </main>
