@@ -1,10 +1,10 @@
-# Fuad Adebisi — Analytics Engineering Portfolio
+# Fuad Adebisi | Analytics Engineering Portfolio
 
 Personal portfolio website for **Fuad Abiola Adebisi**, Analytics Engineer.
 
 The site covers professional experience, technical skills and selected data projects in analytics engineering, lending analysis and predictive analytics.
 
-## Featured project
+## Featured projects
 
 ### WalletFlow Analytics
 A synthetic digital-wallet analytics engineering project using:
@@ -19,6 +19,11 @@ A synthetic digital-wallet analytics engineering project using:
 - GitHub Actions CI
 
 Repository: https://github.com/Fuddie/walletflow-analytics
+
+### CareFlow Health Analytics
+A synthetic healthcare operations analytics engineering project covering appointments, patient encounters, inpatient admissions, readmissions, facility capacity and patient return metrics.
+
+Repository: https://github.com/Fuddie/careflow-health-analytics
 
 ## Site stack
 
