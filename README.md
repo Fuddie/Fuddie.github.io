@@ -2,23 +2,25 @@
 
 Personal portfolio website for **Fuad Abiola Adebisi**, Analytics Engineer.
 
-The site highlights professional analytics engineering experience and selected portfolio projects covering fintech data modelling, lending analysis and predictive analytics.
+The site covers professional experience, technical skills and selected data projects in analytics engineering, lending analysis and predictive analytics.
 
 ## Featured project
 
 ### WalletFlow Analytics
-A synthetic digital-wallet analytics engineering project demonstrating:
+A synthetic digital-wallet analytics engineering project using:
 
-- dbt-style staging, intermediate and mart layers
-- BigQuery-compatible SQL
-- dimensional modelling
-- data quality testing
-- synthetic fintech data generation with Python
-- BI-ready business metrics
+- dbt
+- BigQuery SQL
+- Python
+- incremental models
+- data quality tests
+- DAU and MAU metrics
+- monthly and cohort retention
+- GitHub Actions CI
 
 Repository: https://github.com/Fuddie/walletflow-analytics
 
-## Portfolio stack
+## Site stack
 
 - HTML5
 - CSS3
