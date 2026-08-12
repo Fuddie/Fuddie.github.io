@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="WalletFlow Analytics — synthetic fintech analytics engineering case study by Fuad Abiola Adebisi, featuring dbt, BigQuery, MAU, DAU, retention, CI and incremental modelling." />
+  <meta name="description" content="WalletFlow Analytics — a synthetic fintech analytics engineering project by Fuad Abiola Adebisi using dbt, BigQuery, MAU, DAU, retention, CI and incremental modelling." />
   <title>WalletFlow Analytics | Fuad Adebisi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,29 +24,29 @@
 <header class="site-header"><nav class="nav container"><a class="brand" href="index.html">FA<span>.</span></a><div class="nav-links"><a href="index.html#projects">Projects</a><a href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">Repository ↗</a><a href="mailto:fuddiebiola@gmail.com">Contact</a></div></nav></header>
 <main>
   <section class="case-hero container">
-    <p class="eyebrow">FINTECH ANALYTICS ENGINEERING CASE STUDY</p>
+    <p class="eyebrow">FINTECH ANALYTICS ENGINEERING PROJECT</p>
     <h1>WalletFlow <span>Analytics</span></h1>
-    <p class="case-lede">A synthetic digital-wallet project showing how raw customer, wallet and transaction data can be transformed into tested data products with incremental processing, late-arriving-data protection, governed engagement KPIs, cohort retention and pull-request quality checks.</p>
-    <div class="case-note"><strong>Portfolio project:</strong> WalletFlow is fictional and uses generated data only. It is designed to demonstrate analytics engineering patterns without exposing employer or customer data.</div>
-    <div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">View repository</a><a class="button secondary" href="index.html#projects">Back to portfolio</a></div>
+    <p class="case-lede">WalletFlow models a fictional digital-wallet business using synthetic customer, wallet and transaction data. The project covers transformation, testing, incremental processing, customer engagement metrics and retention reporting.</p>
+    <div class="case-note"><strong>Data:</strong> all records shown here are generated for this project. No employer or customer data is included.</div>
+    <div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">View repository</a><a class="button secondary" href="index.html#projects">Back to projects</a></div>
   </section>
 
   <section class="section container">
     <div class="dashboard">
-      <div class="dashboard-head"><div><p class="eyebrow">SYNTHETIC WALLET PERFORMANCE</p><h2>Executive + product KPI view</h2><p>Illustrative metrics calculated from the deterministic seed-42 dataset.</p></div><span class="status-pill">JAN–JUN 2026</span></div>
+      <div class="dashboard-head"><div><p class="eyebrow">SYNTHETIC WALLET PERFORMANCE</p><h2>Transaction and engagement metrics</h2><p>Metrics calculated from the deterministic seed-42 dataset.</p></div><span class="status-pill">JAN–JUN 2026</span></div>
       <div class="dash-kpis">
         <div class="kpi"><span>Gross transaction value</span><strong>₦145.85M</strong><small>5,000 transactions</small></div>
-        <div class="kpi"><span>Transaction success rate</span><strong>88.42%</strong><small>platform quality</small></div>
+        <div class="kpi"><span>Transaction success rate</span><strong>88.42%</strong><small>successful ÷ attempts</small></div>
         <div class="kpi"><span>June MAU</span><strong>238</strong><small>monthly active users</small></div>
         <div class="kpi"><span>June avg. DAU</span><strong>25.8</strong><small>daily active users</small></div>
-        <div class="kpi"><span>June DAU/MAU</span><strong>10.84%</strong><small>stickiness</small></div>
+        <div class="kpi"><span>June DAU/MAU</span><strong>10.84%</strong><small>average DAU ÷ MAU</small></div>
         <div class="kpi"><span>June retention</span><strong>95.06%</strong><small>vs May MAU</small></div>
-        <div class="kpi"><span>Successful value</span><strong>₦128.11M</strong><small>completed volume</small></div>
-        <div class="kpi"><span>Fees generated</span><strong>₦409.8K</strong><small>successful tx only</small></div>
+        <div class="kpi"><span>Successful value</span><strong>₦128.11M</strong><small>successful transactions</small></div>
+        <div class="kpi"><span>Fees generated</span><strong>₦409.8K</strong><small>successful transactions</small></div>
       </div>
       <div class="dash-grid">
         <div class="viz-card">
-          <h3>Monthly engagement trend</h3>
+          <h3>Monthly engagement</h3>
           <table class="kpi-table">
             <thead><tr><th>Month</th><th>MAU</th><th>Avg DAU</th><th>DAU/MAU</th><th>Retention</th></tr></thead>
             <tbody>
@@ -59,25 +59,25 @@
             </tbody>
           </table>
         </div>
-        <div class="viz-card"><h3>Governed metric layer</h3><div class="metric-list"><div><span>DAU</span><strong>daily distinct customers</strong></div><div><span>MAU</span><strong>monthly distinct customers</strong></div><div><span>Stickiness</span><strong>avg DAU ÷ MAU</strong></div><div><span>Monthly retention</span><strong>returning ÷ prior MAU</strong></div><div><span>Cohort retention</span><strong>retained ÷ cohort size</strong></div><div><span>Success rate</span><strong>successful ÷ attempts</strong></div></div></div>
+        <div class="viz-card"><h3>Metric definitions</h3><div class="metric-list"><div><span>DAU</span><strong>daily distinct customers</strong></div><div><span>MAU</span><strong>monthly distinct customers</strong></div><div><span>DAU/MAU</span><strong>avg DAU ÷ MAU</strong></div><div><span>Monthly retention</span><strong>returning ÷ prior MAU</strong></div><div><span>Cohort retention</span><strong>retained ÷ cohort size</strong></div><div><span>Success rate</span><strong>successful ÷ attempts</strong></div></div></div>
       </div>
     </div>
   </section>
 
   <section class="section container">
-    <div class="section-heading"><p class="eyebrow">ARCHITECTURE</p><h2>Raw events become trusted business metrics in clear layers.</h2></div>
+    <div class="section-heading"><p class="eyebrow">ARCHITECTURE</p><h2>Layered models from raw sources to reporting marts.</h2></div>
     <div class="architecture">
-      <div class="layer"><span>01 / SOURCES</span><h3>Raw data</h3><p>Synthetic customer, wallet and transaction tables declared as dbt sources with source-level tests and demo freshness.</p><div class="arrow">→</div></div>
-      <div class="layer"><span>02 / STAGING</span><h3>Clean & standardise</h3><p>Explicit column selection, typing, controlled categories and null handling. No <code>SELECT *</code>.</p><div class="arrow">→</div></div>
-      <div class="layer"><span>03 / CORE</span><h3>Facts & dimensions</h3><p>An incremental transaction fact uses partitioning, clustering and a three-day lookback for delayed events.</p><div class="arrow">→</div></div>
-      <div class="layer"><span>04 / MARTS</span><h3>Business KPIs</h3><p>Transaction, MAU/DAU, stickiness, monthly retention and cohort-retention models are ready for BI.</p></div>
+      <div class="layer"><span>01 / SOURCES</span><h3>Raw data</h3><p>Synthetic customer, wallet and transaction tables declared as dbt sources with source-level tests.</p><div class="arrow">→</div></div>
+      <div class="layer"><span>02 / STAGING</span><h3>Clean & standardise</h3><p>Explicit column selection, type conversion, controlled categories and null handling.</p><div class="arrow">→</div></div>
+      <div class="layer"><span>03 / CORE</span><h3>Facts & dimensions</h3><p>The transaction fact uses incremental MERGE processing, partitioning, clustering and a three-day lookback for delayed records.</p><div class="arrow">→</div></div>
+      <div class="layer"><span>04 / MARTS</span><h3>Reporting metrics</h3><p>Daily transaction metrics, DAU, MAU, DAU/MAU, monthly retention and cohort retention.</p></div>
     </div>
   </section>
 
   <section class="section container">
-    <div class="section-heading"><p class="eyebrow">ENGINEERING DECISIONS</p><h2>Patterns that make the project easier to trust and operate.</h2></div>
+    <div class="section-heading"><p class="eyebrow">IMPLEMENTATION DETAILS</p><h2>Key modelling and quality decisions.</h2></div>
     <div class="case-grid">
-      <article class="case-card"><span class="mini-label">MODEL CONTRACTS</span><h3>Explicit column selection</h3><p>Transformation and test SQL avoid <code>SELECT *</code>. Each model names the fields it depends on, making upstream schema changes visible.</p><div class="sql-rule">select
+      <article class="case-card"><span class="mini-label">COLUMN DEPENDENCIES</span><h3>Explicit column selection</h3><p>Transformation and test SQL name the fields they depend on. This makes schema changes easier to review and prevents unnecessary fields from flowing downstream.</p><div class="sql-rule">select
     transaction_id,
     customer_id,
     amount_ngn,
@@ -85,20 +85,20 @@
     created_at
 from {{ ref('stg_transactions') }}</div></article>
 
-      <article class="case-card"><span class="mini-label">INCREMENTAL RELIABILITY</span><h3>Late-arriving transactions</h3><p>The transaction fact re-reads a configurable three-day window on incremental runs. Because <code>transaction_id</code> is the MERGE key, recent rows can be reprocessed without creating duplicates.</p><div class="sql-rule">vars:
+      <article class="case-card"><span class="mini-label">INCREMENTAL PROCESSING</span><h3>Late-arriving transactions</h3><p>The transaction fact reprocesses a configurable three-day window on incremental runs. `transaction_id` is the MERGE key, so existing records can be updated without creating duplicates.</p><div class="sql-rule">vars:
   incremental_lookback_days: 3</div></article>
 
-      <article class="case-card"><span class="mini-label">TESTING</span><h3>Business-rule checks</h3><p>Tests cover keys, relationships, accepted values, positive amounts, transaction-status reconciliation, composite grains and engagement logic.</p><ul><li>Average DAU cannot exceed MAU.</li><li>Retained customers cannot exceed the previous-month population.</li><li>Month-zero cohort retention must equal 100%.</li><li>Retention and success rates must remain between 0 and 1.</li></ul></article>
+      <article class="case-card"><span class="mini-label">TESTING</span><h3>Structural and business checks</h3><p>Tests cover keys, relationships, accepted values, positive amounts, transaction-status reconciliation, composite grains and retention rules.</p><ul><li>Average DAU cannot exceed MAU.</li><li>Retained customers cannot exceed the comparison population.</li><li>Month-zero cohort retention must equal 100%.</li><li>Retention and success rates must remain between 0 and 1.</li></ul></article>
 
-      <article class="case-card"><span class="mini-label">CONTINUOUS INTEGRATION</span><h3>Pull-request quality checks</h3><p>GitHub Actions rejects <code>SELECT *</code> in models/tests. With BigQuery credentials configured, the workflow also loads synthetic seeds, runs <code>dbt build</code>, and checks source freshness before changes are accepted.</p></article>
+      <article class="case-card"><span class="mini-label">CI</span><h3>Pull-request checks</h3><p>GitHub Actions checks model and test SQL for `SELECT *`. When BigQuery credentials are configured, the workflow also runs `dbt seed`, `dbt build` and `dbt source freshness`.</p></article>
 
-      <article class="case-card"><span class="mini-label">PRODUCT ANALYTICS</span><h3>DAU, MAU & stickiness</h3><p>DAU counts distinct daily transacting customers. MAU counts distinct monthly customers. Average DAU divided by MAU provides a simple engagement-frequency or “stickiness” measure.</p></article>
+      <article class="case-card"><span class="mini-label">ENGAGEMENT</span><h3>DAU and MAU</h3><p>DAU counts distinct customers with at least one transaction attempt on a day. MAU counts distinct customers with activity in a month. Average DAU divided by MAU provides a monthly usage-frequency measure.</p></article>
 
-      <article class="case-card"><span class="mini-label">RETENTION</span><h3>Two retention views</h3><p>The monthly engagement mart measures whether last month's active users returned. A separate cohort model groups customers by their first successful transaction and follows their later successful activity.</p></article>
+      <article class="case-card"><span class="mini-label">RETENTION</span><h3>Monthly and cohort retention</h3><p>Monthly retention measures customers who were active in both the current and previous month. Cohort retention groups customers by first successful transaction and tracks successful activity in later months.</p></article>
     </div>
   </section>
 
-  <section class="section contact-section"><div class="container contact-card"><p class="eyebrow">INTERVIEW VERSION</p><h2>How I explain WalletFlow in under a minute.</h2><p>“I built WalletFlow as a synthetic fintech analytics engineering project. I structured generated wallet data into source, staging, intermediate and mart layers; built an incremental BigQuery fact with a configurable lookback for late-arriving events; added tested DAU, MAU, stickiness, month-over-month retention and cohort retention; and added CI so SQL conventions and dbt quality checks can run before changes reach main. The goal is to create a governed analytics layer rather than rebuild metric logic inside every dashboard.”</p><div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">Inspect the code</a><a class="button secondary" href="index.html">Portfolio home</a></div></div></section>
+  <section class="section contact-section"><div class="container contact-card"><p class="eyebrow">PROJECT SUMMARY</p><h2>WalletFlow combines data modelling, quality checks and product reporting.</h2><p>The project starts with generated wallet data, standardises it in staging models, builds an incremental transaction fact and customer dimension, and exposes reporting marts for transaction performance, engagement and retention. Tests cover structural integrity and business rules, while CI checks SQL conventions and can run dbt builds against BigQuery.</p><div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">View code</a><a class="button secondary" href="index.html">Portfolio home</a></div></div></section>
 </main>
 <footer class="footer container"><p>WalletFlow Analytics · Fuad Abiola Adebisi</p><a href="#top">Back to top ↑</a></footer>
 </body>
