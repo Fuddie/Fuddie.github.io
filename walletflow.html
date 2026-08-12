@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="WalletFlow Analytics — synthetic fintech analytics engineering case study by Fuad Abiola Adebisi." />
+  <title>WalletFlow Analytics | Fuad Adebisi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .case-hero{padding:110px 0 58px}.case-hero h1{font-size:clamp(3rem,7vw,6rem);line-height:1;letter-spacing:-.05em;margin:14px 0 24px}.case-hero h1 span{color:var(--accent)}.case-lede{font-size:1.18rem;color:var(--muted);max-width:820px}.case-note{margin-top:24px;padding:14px 16px;border-left:3px solid var(--accent);background:rgba(120,167,255,.06);color:var(--muted)}
+    .dashboard{border:1px solid var(--line);border-radius:20px;background:#0b1626;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.25)}.dashboard-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:24px}.dashboard-head h2{margin:0;font-size:1.55rem}.dashboard-head p{margin:4px 0 0;color:var(--muted)}.status-pill{font-family:'JetBrains Mono',monospace;font-size:.72rem;border:1px solid var(--line);padding:6px 10px;border-radius:999px;color:var(--accent)}
+    .dash-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:18px}.kpi span{display:block;color:var(--muted);font-size:.82rem}.kpi strong{display:block;font-size:1.7rem;margin-top:5px;letter-spacing:-.04em}.kpi small{color:var(--accent);font-family:'JetBrains Mono',monospace}
+    .dash-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:14px;margin-top:14px}.viz-card{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:20px}.viz-card h3{margin:0 0 18px;font-size:1rem}.bar-row{display:grid;grid-template-columns:110px 1fr 52px;gap:10px;align-items:center;margin:13px 0;color:var(--muted);font-size:.84rem}.bar-track{height:9px;border-radius:999px;background:#1a2a40;overflow:hidden}.bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px}.metric-list{display:grid;gap:13px}.metric-list div{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px}.metric-list span{color:var(--muted)}
+    .architecture{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}.layer{border:1px solid var(--line);border-radius:14px;padding:22px;background:rgba(255,255,255,.02)}.layer span{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.75rem}.layer h3{margin:10px 0}.layer p{color:var(--muted);font-size:.92rem}.arrow{color:var(--accent);text-align:center;font-size:1.6rem;margin-top:14px}
+    .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.case-card{border:1px solid var(--line);border-radius:16px;padding:26px;background:rgba(255,255,255,.02)}.case-card h3{margin-top:0}.case-card p,.case-card li{color:var(--muted)}.sql-rule{font-family:'JetBrains Mono',monospace;font-size:.85rem;background:#08101d;border:1px solid var(--line);border-radius:12px;padding:18px;overflow:auto;color:#c8daf4}
+    @media(max-width:900px){.dash-kpis{grid-template-columns:repeat(2,1fr)}.dash-grid,.case-grid{grid-template-columns:1fr}.architecture{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.dash-kpis,.architecture{grid-template-columns:1fr}.dashboard{padding:16px}.bar-row{grid-template-columns:90px 1fr 45px}.dashboard-head{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+<header class="site-header"><nav class="nav container"><a class="brand" href="index.html">FA<span>.</span></a><div class="nav-links"><a href="index.html#projects">Projects</a><a href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">Repository ↗</a><a href="mailto:fuddiebiola@gmail.com">Contact</a></div></nav></header>
+<main>
+  <section class="case-hero container">
+    <p class="eyebrow">FINTECH ANALYTICS ENGINEERING CASE STUDY</p>
+    <h1>WalletFlow <span>Analytics</span></h1>
+    <p class="case-lede">A synthetic digital-wallet project showing how raw customer, wallet and transaction data can be transformed into reliable staging models, reusable business logic, tested fact and dimension tables, and BI-ready KPI marts.</p>
+    <div class="case-note"><strong>Portfolio project:</strong> WalletFlow is fictional and uses generated data only. It is designed to demonstrate analytics engineering patterns without exposing employer or customer data.</div>
+    <div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">View repository</a><a class="button secondary" href="index.html#projects">Back to portfolio</a></div>
+  </section>
+
+  <section class="section container">
+    <div class="dashboard">
+      <div class="dashboard-head"><div><p class="eyebrow">SYNTHETIC WALLET PERFORMANCE</p><h2>Executive KPI view</h2><p>Illustrative dashboard calculated from the generated WalletFlow dataset.</p></div><span class="status-pill">JAN–JUN 2026</span></div>
+      <div class="dash-kpis">
+        <div class="kpi"><span>Gross transaction value</span><strong>₦145.85M</strong><small>5,000 transactions</small></div>
+        <div class="kpi"><span>Transaction success rate</span><strong>88.42%</strong><small>quality KPI</small></div>
+        <div class="kpi"><span>Successful value</span><strong>₦128.11M</strong><small>completed volume</small></div>
+        <div class="kpi"><span>Fees generated</span><strong>₦409.8K</strong><small>successful tx only</small></div>
+      </div>
+      <div class="dash-grid">
+        <div class="viz-card"><h3>How the BI layer is designed to answer product questions</h3>
+          <div class="bar-row"><span>Success rate</span><div class="bar-track"><div class="bar-fill" style="width:88.42%"></div></div><strong>88%</strong></div>
+          <div class="bar-row"><span>Data tested</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>100%</strong></div>
+          <div class="bar-row"><span>Customers</span><div class="bar-track"><div class="bar-fill" style="width:72%"></div></div><strong>250</strong></div>
+          <div class="bar-row"><span>Model layers</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><strong>3</strong></div>
+        </div>
+        <div class="viz-card"><h3>Core governed metrics</h3><div class="metric-list"><div><span>Transaction count</span><strong>5,000</strong></div><div><span>Active customers</span><strong>250</strong></div><div><span>GTV</span><strong>₦145.85M</strong></div><div><span>Success rate</span><strong>88.42%</strong></div><div><span>Fees</span><strong>₦409.8K</strong></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-heading"><p class="eyebrow">ARCHITECTURE</p><h2>Raw data becomes trusted business data in clear layers.</h2></div>
+    <div class="architecture">
+      <div class="layer"><span>01 / SOURCES</span><h3>Raw data</h3><p>Synthetic customer, wallet and transaction tables generated in Python.</p><div class="arrow">→</div></div>
+      <div class="layer"><span>02 / STAGING</span><h3>Clean & standardise</h3><p>Explicitly selected columns, type casting, text standardisation and null handling.</p><div class="arrow">→</div></div>
+      <div class="layer"><span>03 / CORE</span><h3>Facts & dimensions</h3><p>Reusable transaction fact and customer dimension models with business-friendly fields.</p><div class="arrow">→</div></div>
+      <div class="layer"><span>04 / MARTS</span><h3>Business KPIs</h3><p>Daily wallet KPIs and monthly customer activity ready for Looker or Power BI.</p></div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-heading"><p class="eyebrow">ENGINEERING DECISIONS</p><h2>Simple choices that make the project easier to trust and maintain.</h2></div>
+    <div class="case-grid">
+      <article class="case-card"><h3>Explicit column selection</h3><p>The models avoid <code>SELECT *</code>. Each CTE selects only the fields required downstream, which makes schema changes more visible and model contracts easier to understand.</p><div class="sql-rule">select
+    transaction_id,
+    customer_id,
+    amount_ngn,
+    status,
+    created_at
+from {{ ref('stg_transactions') }}</div></article>
+      <article class="case-card"><h3>Testing & data quality</h3><p>Tests cover primary-key uniqueness and nullability, accepted values, positive transaction amounts, customer relationships and completion timestamps for successful transactions.</p></article>
+      <article class="case-card"><h3>Reusable business logic</h3><p>Transaction status flags and daily activity logic are defined once and reused in downstream marts so analysts do not repeatedly redefine the same concepts.</p></article>
+      <article class="case-card"><h3>BI-ready outputs</h3><p>The final mart exposes governed definitions for transaction count, successful transactions, GTV, success rate, fees and active customers. A BI tool can consume this layer directly.</p></article>
+    </div>
+  </section>
+
+  <section class="section contact-section"><div class="container contact-card"><p class="eyebrow">INTERVIEW VERSION</p><h2>How I explain WalletFlow in under a minute.</h2><p>“I built WalletFlow as a synthetic fintech analytics engineering project. I generated customer, wallet and transaction data, then structured it into staging, intermediate and mart layers. I explicitly selected columns, standardised data types and statuses, built reusable fact and dimension models, added data-quality tests, and created KPI marts for transaction performance and customer activity. The idea is that BI teams can query governed models instead of rebuilding metric logic in every dashboard.”</p><div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">Inspect the code</a><a class="button secondary" href="index.html">Portfolio home</a></div></div></section>
+</main>
+<footer class="footer container"><p>WalletFlow Analytics · Fuad Abiola Adebisi</p><a href="#top">Back to top ↑</a></footer>
+</body>
+</html>
