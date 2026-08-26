@@ -70,9 +70,6 @@ if (projectGrid && !document.querySelector('[data-project="olist-analytics"]')) 
   card.className = 'project-card featured reveal visible';
   card.dataset.project = 'olist-analytics';
   card.innerHTML = `
-    <a href="olist.html" aria-label="Open Olist Analytics case study" style="display:block;margin:-2px -2px 22px;overflow:hidden;border-radius:14px;border:1px solid var(--line);background:#07111f;">
-      <img src="olist-analytics-preview.jpg" alt="Olist Analytics Snowflake and dbt portfolio preview" loading="lazy" style="display:block;width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform .25s ease;" onmouseenter="this.style.transform='scale(1.02)'" onmouseleave="this.style.transform='scale(1)'" />
-    </a>
     <div class="project-topline"><span class="project-number">03</span><span class="badge">PUBLIC E-COMMERCE</span></div>
     <h3>Olist Analytics</h3>
     <p>A production-oriented Snowflake and dbt Cloud analytics engineering pipeline using public Olist e-commerce data. It includes layered models, two transactional fact grains, ingestion-based incremental MERGE processing, automated tests, pull-request CI, isolated DEV/PROD compute, RSA service authentication and scheduled production orchestration.</p>
