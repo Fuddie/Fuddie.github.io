@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Olist Analytics, a production-oriented analytics engineering project by Fuad Abiola Adebisi using Snowflake, dbt Cloud, SQL, GitHub Actions, incremental MERGE models and dimensional modelling." />
+  <title>Olist Analytics | Fuad Adebisi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .case-hero{padding:110px 0 58px}.case-hero h1{font-size:clamp(3rem,7vw,6rem);line-height:1;letter-spacing:-.05em;margin:14px 0 24px}.case-hero h1 span{color:var(--accent)}.case-lede{font-size:1.18rem;color:var(--muted);max-width:900px}.case-note{margin-top:24px;padding:14px 16px;border-left:3px solid var(--accent);background:rgba(120,167,255,.06);color:var(--muted)}
+    .dashboard{border:1px solid var(--line);border-radius:20px;background:#0b1626;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.25)}.dashboard-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:24px}.dashboard-head h2{margin:0;font-size:1.55rem}.dashboard-head p{margin:4px 0 0;color:var(--muted)}.status-pill{font-family:'JetBrains Mono',monospace;font-size:.72rem;border:1px solid var(--line);padding:6px 10px;border-radius:999px;color:var(--accent)}
+    .dash-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:18px}.kpi span{display:block;color:var(--muted);font-size:.82rem}.kpi strong{display:block;font-size:1.7rem;margin-top:5px;letter-spacing:-.04em}.kpi small{color:var(--accent);font-family:'JetBrains Mono',monospace}
+    .architecture{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}.layer{border:1px solid var(--line);border-radius:14px;padding:22px;background:rgba(255,255,255,.02)}.layer span{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.75rem}.layer h3{margin:10px 0}.layer p{color:var(--muted);font-size:.92rem}.arrow{color:var(--accent);text-align:center;font-size:1.6rem;margin-top:14px}
+    .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.case-card{border:1px solid var(--line);border-radius:16px;padding:26px;background:rgba(255,255,255,.02)}.case-card h3{margin-top:0}.case-card p,.case-card li{color:var(--muted)}.mini-label{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.75rem}.case-card ul{padding-left:20px}.code-block{font-family:'JetBrains Mono',monospace;font-size:.83rem;background:#08101d;border:1px solid var(--line);border-radius:12px;padding:18px;white-space:pre-wrap;color:#c8daf4}
+    @media(max-width:900px){.dash-kpis{grid-template-columns:repeat(2,1fr)}.case-grid{grid-template-columns:1fr}.architecture{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.dash-kpis,.architecture{grid-template-columns:1fr}.dashboard{padding:16px}.dashboard-head{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body id="top">
+<header class="site-header"><nav class="nav container"><a class="brand" href="index.html">FA<span>.</span></a><div class="nav-links"><a href="index.html#projects">Projects</a><a href="https://github.com/Fuddie/olist-analytics" target="_blank" rel="noreferrer">Repository ↗</a><a href="mailto:fuddiebiola@gmail.com">Contact</a></div></nav></header>
+<main>
+  <section class="case-hero container">
+    <p class="eyebrow">SNOWFLAKE + dbt ANALYTICS ENGINEERING PROJECT</p>
+    <h1>Olist <span>Analytics</span></h1>
+    <p class="case-lede">A production-oriented analytics engineering pipeline built on Snowflake and dbt Cloud using the Brazilian Olist e-commerce dataset. The project covers layered modelling, dimensional marts, ingestion-based incremental processing, automated data tests, pull-request CI, workload isolation, service-user authentication and scheduled production deployment.</p>
+    <div class="case-note"><strong>Data:</strong> public Olist e-commerce data. The project is independent portfolio work and contains no employer or customer data.</div>
+    <div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/olist-analytics" target="_blank" rel="noreferrer">View repository</a><a class="button secondary" href="index.html#projects">Back to projects</a></div>
+  </section>
+
+  <section class="section container">
+    <div class="dashboard">
+      <div class="dashboard-head"><div><p class="eyebrow">PRODUCTION VALIDATION</p><h2>Hardened pipeline deployed and validated</h2><p>Validated after release into isolated production schemas and compute.</p></div><span class="status-pill">PRODUCTION READY</span></div>
+      <div class="dash-kpis">
+        <div class="kpi"><span>Orders fact</span><strong>99,441</strong><small>99,441 distinct order IDs</small></div>
+        <div class="kpi"><span>Order-item fact</span><strong>112,650</strong><small>0 duplicate composite keys</small></div>
+        <div class="kpi"><span>Source tables</span><strong>9</strong><small>RAW.OLIST</small></div>
+        <div class="kpi"><span>Production schedule</span><strong>12h</strong><small>dbt build orchestration</small></div>
+        <div class="kpi"><span>Fact tables</span><strong>2</strong><small>orders + order items</small></div>
+        <div class="kpi"><span>Dimensions</span><strong>3</strong><small>customer, product, seller</small></div>
+        <div class="kpi"><span>Watermark nulls</span><strong>0</strong><small>both production facts</small></div>
+        <div class="kpi"><span>Production warehouse</span><strong>DBT_PROD_WH</strong><small>isolated compute</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-heading"><p class="eyebrow">ARCHITECTURE</p><h2>Separate raw, transformation and production layers.</h2></div>
+    <div class="architecture">
+      <div class="layer"><span>01 / RAW</span><h3>RAW.OLIST</h3><p>Nine Olist sources with persistent <code>_LOADED_AT</code> ingestion metadata.</p><div class="arrow">→</div></div>
+      <div class="layer"><span>02 / STAGING</span><h3>Standardise</h3><p>Explicit columns, cleaning, naming and source metadata propagation.</p><div class="arrow">→</div></div>
+      <div class="layer"><span>03 / INTERMEDIATE</span><h3>Enrich & aggregate</h3><p>Reusable joins and order-level aggregations that protect downstream grain.</p><div class="arrow">→</div></div>
+      <div class="layer"><span>04 / MARTS</span><h3>Dimensional model</h3><p>Three dimensions plus order and order-item transactional facts.</p></div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-heading"><p class="eyebrow">IMPLEMENTATION</p><h2>Production engineering decisions built into the project.</h2></div>
+    <div class="case-grid">
+      <article class="case-card"><span class="mini-label">INCREMENTAL PROCESSING</span><h3>Ingestion-based watermarks</h3><p>The original business-date lookback was replaced with persistent ingestion metadata. Watermarks propagate from RAW into downstream models and drive incremental Snowflake MERGE operations.</p><div class="code-block">RAW._LOADED_AT
+  ↓
+staging._loaded_at
+  ↓
+intermediate.record_loaded_at
+  ↓
+incremental MERGE</div></article>
+      <article class="case-card"><span class="mini-label">DIMENSIONAL MODELLING</span><h3>Two fact grains</h3><p><code>fct_orders</code> provides one row per order while <code>fct_order_items</code> provides one row per order-item key. This preserves order KPIs while correctly connecting product and seller dimensions to transactional activity.</p></article>
+      <article class="case-card"><span class="mini-label">ENVIRONMENT ISOLATION</span><h3>Separate DEV and PROD compute</h3><p>Development uses <code>DEV_WH</code> and production uses <code>DBT_PROD_WH</code>. Production models are also split across staging, intermediate and mart schemas rather than sharing one catch-all schema.</p></article>
+      <article class="case-card"><span class="mini-label">SECURITY</span><h3>Service identity and RBAC</h3><p>Production runs through <code>DBT_USER</code> and <code>DBT_ROLE</code> with RSA key-pair authentication. A separate read-only analytics role limits consumer access to the production marts.</p></article>
+      <article class="case-card"><span class="mini-label">QUALITY</span><h3>Structural and business tests</h3><p>Tests cover keys, relationships, accepted values, fact grains and non-negative commercial values. Known timestamp and payment reconciliation anomalies are surfaced as warnings instead of silently ignored.</p></article>
+      <article class="case-card"><span class="mini-label">DELIVERY</span><h3>Feature branch → CI → production</h3><p>Changes move through feature branches and pull requests. GitHub Actions validates dbt project parsing and graph integrity before merge, followed by DEV validation and a controlled dbt Cloud production deployment.</p></article>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-heading"><p class="eyebrow">PRODUCTION LAYOUT</p><h2>Layered Snowflake schemas and isolated identities.</h2></div>
+    <div class="case-grid">
+      <article class="case-card"><span class="mini-label">DEVELOPMENT</span><div class="code-block">DEV_USER / DEV_ROLE
+        ↓
+DEV_WH
+        ↓
+DEV.DBT_DEV_STAGING
+DEV.DBT_DEV_INTERMEDIATE
+DEV.DBT_DEV_MARTS</div></article>
+      <article class="case-card"><span class="mini-label">PRODUCTION</span><div class="code-block">DBT_USER / DBT_ROLE
+        ↓
+DBT_PROD_WH
+        ↓
+PROD.ANALYTICS_STAGING
+PROD.ANALYTICS_INTERMEDIATE
+PROD.ANALYTICS_MARTS</div></article>
+    </div>
+  </section>
+
+  <section class="section contact-section"><div class="container contact-card"><p class="eyebrow">PROJECT SUMMARY</p><h2>A complete Snowflake + dbt production workflow.</h2><p>Olist Analytics goes beyond model creation: it demonstrates environment isolation, dimensional modelling, incremental MERGE logic, ingestion watermarks, data-quality controls, pull-request CI, secure service authentication and production orchestration. The current source is a static historical snapshot, so automated RAW ingestion and blocking source freshness remain the next logical extension.</p><div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/olist-analytics" target="_blank" rel="noreferrer">View code</a><a class="button secondary" href="index.html">Portfolio home</a></div></div></section>
+</main>
+<footer class="footer container"><p>Olist Analytics · Fuad Abiola Adebisi</p><a href="#top">Back to top ↑</a></footer>
+</body>
+</html>
