@@ -3,46 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="WalletFlow Analytics, a synthetic fintech analytics engineering project by Fuad Abiola Adebisi using dbt, BigQuery, MAU, DAU, retention, CI and incremental modelling." />
+  <meta name="description" content="WalletFlow Analytics, a synthetic fintech analytics engineering case study by Fuad Abiola Adebisi using dbt, BigQuery, incremental modelling, product metrics, retention, testing and CI." />
   <title>WalletFlow Analytics | Fuad Adebisi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .case-hero{padding:110px 0 58px}.case-hero h1{font-size:clamp(3rem,7vw,6rem);line-height:1;letter-spacing:-.05em;margin:14px 0 24px}.case-hero h1 span{color:var(--accent)}.case-lede{font-size:1.18rem;color:var(--muted);max-width:900px}.case-note{margin-top:24px;padding:14px 16px;border-left:3px solid var(--accent);background:rgba(120,167,255,.06);color:var(--muted)}
-    .dashboard{border:1px solid var(--line);border-radius:20px;background:#0b1626;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.25)}.dashboard-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:24px}.dashboard-head h2{margin:0;font-size:1.55rem}.dashboard-head p{margin:4px 0 0;color:var(--muted)}.status-pill{font-family:'JetBrains Mono',monospace;font-size:.72rem;border:1px solid var(--line);padding:6px 10px;border-radius:999px;color:var(--accent)}
-    .dash-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:18px}.kpi span{display:block;color:var(--muted);font-size:.82rem}.kpi strong{display:block;font-size:1.7rem;margin-top:5px;letter-spacing:-.04em}.kpi small{color:var(--accent);font-family:'JetBrains Mono',monospace}
-    .dash-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-top:14px}.viz-card{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:20px}.viz-card h3{margin:0 0 18px;font-size:1rem}.metric-list{display:grid;gap:13px}.metric-list div{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px}.metric-list span{color:var(--muted)}
-    .kpi-table{width:100%;border-collapse:collapse;font-size:.86rem}.kpi-table th,.kpi-table td{text-align:right;padding:10px 8px;border-bottom:1px solid var(--line)}.kpi-table th:first-child,.kpi-table td:first-child{text-align:left}.kpi-table th{color:var(--muted);font-weight:600}.kpi-table td{color:#dce6f4}
-    .architecture{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}.layer{border:1px solid var(--line);border-radius:14px;padding:22px;background:rgba(255,255,255,.02)}.layer span{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.75rem}.layer h3{margin:10px 0}.layer p{color:var(--muted);font-size:.92rem}.arrow{color:var(--accent);text-align:center;font-size:1.6rem;margin-top:14px}
-    .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.case-card{border:1px solid var(--line);border-radius:16px;padding:26px;background:rgba(255,255,255,.02)}.case-card h3{margin-top:0}.case-card p,.case-card li{color:var(--muted)}.sql-rule{font-family:'JetBrains Mono',monospace;font-size:.85rem;background:#08101d;border:1px solid var(--line);border-radius:12px;padding:18px;overflow:auto;color:#c8daf4;white-space:pre-wrap}.mini-label{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.75rem}.case-card ul{padding-left:20px}
-    @media(max-width:900px){.dash-kpis{grid-template-columns:repeat(2,1fr)}.dash-grid,.case-grid{grid-template-columns:1fr}.architecture{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.dash-kpis,.architecture{grid-template-columns:1fr}.dashboard{padding:16px}.dashboard-head{align-items:flex-start;flex-direction:column}.kpi-table{font-size:.72rem}.kpi-table th,.kpi-table td{padding:8px 4px}}
+    .case-shell{padding:110px 0 54px}.case-breadcrumb{display:flex;gap:10px;align-items:center;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.78rem}.case-breadcrumb a{color:var(--accent)}
+    .case-hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:44px;align-items:end;margin-top:28px}.case-shell h1{font-size:clamp(3.3rem,7vw,6.7rem);line-height:.96;letter-spacing:-.055em;margin:12px 0 24px}.case-shell h1 span{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;color:transparent}.case-lede{font-size:1.2rem;color:var(--muted);max-width:880px}.case-note{margin-top:22px;padding:14px 16px;border-left:3px solid var(--accent);background:rgba(120,167,255,.06);color:var(--muted)}
+    .case-summary{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.025);overflow:hidden}.summary-label{padding:12px 16px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.72rem}.summary-grid{display:grid;grid-template-columns:1fr 1fr}.summary-grid div{padding:18px;border-bottom:1px solid var(--line)}.summary-grid div:nth-child(odd){border-right:1px solid var(--line)}.summary-grid div:nth-last-child(-n+2){border-bottom:0}.summary-grid span{display:block;color:var(--muted);font-size:.78rem;margin-bottom:5px}.summary-grid strong{font-size:.96rem}
+    .story-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px}.story-label{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.76rem;letter-spacing:.1em}.story-grid h2,.case-heading h2{font-size:clamp(2.2rem,4vw,4rem);line-height:1.05;letter-spacing:-.04em;margin:12px 0 22px}.story-copy{color:var(--muted);font-size:1.06rem}.story-copy p+ p{margin-top:18px}.question-list{display:grid;gap:10px;margin-top:22px}.question-list div{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:rgba(255,255,255,.02);color:#dce6f4}
+    .dashboard{border:1px solid var(--line);border-radius:22px;background:#0b1626;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.25)}.dashboard-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:24px}.dashboard-head h2{margin:0;font-size:1.6rem}.dashboard-head p{margin:4px 0 0;color:var(--muted)}.status-pill{font-family:'JetBrains Mono',monospace;font-size:.72rem;border:1px solid var(--line);padding:6px 10px;border-radius:999px;color:var(--accent)}
+    .dash-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:18px}.kpi span{display:block;color:var(--muted);font-size:.8rem}.kpi strong{display:block;font-size:1.7rem;margin-top:5px;letter-spacing:-.04em}.kpi small{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:.72rem}
+    .dash-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:14px;margin-top:14px}.viz-card{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:20px}.viz-card h3{margin:0 0 18px;font-size:1rem}.metric-list{display:grid;gap:13px}.metric-list div{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid var(--line);padding-bottom:10px}.metric-list span{color:var(--muted)}.metric-list strong{text-align:right}.kpi-table{width:100%;border-collapse:collapse;font-size:.85rem}.kpi-table th,.kpi-table td{text-align:right;padding:10px 8px;border-bottom:1px solid var(--line)}.kpi-table th:first-child,.kpi-table td:first-child{text-align:left}.kpi-table th{color:var(--muted);font-weight:600}.kpi-table td{color:#dce6f4}
+    .architecture-line{display:grid;grid-template-columns:repeat(7,auto);align-items:stretch;gap:10px;margin-top:34px}.arch-box{min-width:0;border:1px solid var(--line);border-radius:15px;padding:20px;background:rgba(255,255,255,.025)}.arch-box span{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.72rem}.arch-box h3{margin:9px 0}.arch-box p{color:var(--muted);font-size:.88rem;margin-bottom:0}.arch-arrow{align-self:center;color:var(--accent);font-size:1.6rem}
+    .decision-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}.decision-card{border:1px solid var(--line);border-radius:17px;padding:26px;background:rgba(255,255,255,.022)}.decision-card h3{margin:8px 0 12px}.decision-card p,.decision-card li{color:var(--muted)}.decision-card ul{padding-left:18px;margin-bottom:0}.mini-label{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.72rem}.code-block{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#07101c;border:1px solid var(--line);border-radius:12px;padding:16px;overflow:auto;color:#c8daf4;white-space:pre-wrap;margin-top:16px}
+    .quality-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}.quality-card{border:1px solid var(--line);border-radius:16px;padding:24px;background:rgba(255,255,255,.02)}.quality-card h3{margin-top:0}.quality-card p,.quality-card li{color:var(--muted)}.quality-card ul{padding-left:18px}.production-note{border:1px solid var(--line);border-radius:18px;padding:28px;background:linear-gradient(135deg,rgba(120,167,255,.08),rgba(166,135,255,.05));margin-top:30px}.production-note p{color:var(--muted);margin-bottom:0}
+    .case-nav{display:grid;grid-template-columns:1fr 1fr;gap:18px}.case-nav a{border:1px solid var(--line);border-radius:16px;padding:24px;background:rgba(255,255,255,.02)}.case-nav span{display:block;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.72rem}.case-nav strong{display:block;font-size:1.15rem;margin-top:7px;color:var(--text)}
+    @media(max-width:1000px){.case-hero-grid,.story-grid,.dash-grid{grid-template-columns:1fr}.architecture-line{grid-template-columns:1fr}.arch-arrow{text-align:center;transform:rotate(90deg)}.dash-kpis{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:720px){.decision-grid,.quality-grid,.case-nav{grid-template-columns:1fr}.summary-grid{grid-template-columns:1fr}.summary-grid div{border-right:0!important;border-bottom:1px solid var(--line)!important}.summary-grid div:last-child{border-bottom:0!important}.dash-kpis{grid-template-columns:1fr}.dashboard{padding:16px}.dashboard-head{align-items:flex-start;flex-direction:column}.kpi-table{font-size:.72rem}.kpi-table th,.kpi-table td{padding:8px 4px}}
   </style>
 </head>
 <body id="top">
-<header class="site-header"><nav class="nav container"><a class="brand" href="index.html">FA<span>.</span></a><div class="nav-links"><a href="index.html#projects">Projects</a><a href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">Repository ↗</a><a href="mailto:fuddiebiola@gmail.com">Contact</a></div></nav></header>
+<header class="site-header"><nav class="nav container"><a class="brand" href="index.html">FA<span>.</span></a><div class="nav-links"><a href="index.html#projects">Projects</a><a href="careflow.html">CareFlow</a><a href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">Repository ↗</a><a href="mailto:fuddiebiola@gmail.com">Contact</a></div></nav></header>
 <main>
-  <section class="case-hero container">
-    <p class="eyebrow">FINTECH ANALYTICS ENGINEERING PROJECT</p>
-    <h1>WalletFlow <span>Analytics</span></h1>
-    <p class="case-lede">WalletFlow models a fictional digital-wallet business using synthetic customer, wallet and transaction data. The project covers transformation, testing, incremental processing, customer engagement metrics and retention reporting.</p>
-    <div class="case-note"><strong>Data:</strong> all records shown here are generated for this project. No employer or customer data is included.</div>
-    <div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">View repository</a><a class="button secondary" href="index.html#projects">Back to projects</a></div>
+  <section class="case-shell container">
+    <div class="case-breadcrumb"><a href="index.html#projects">Portfolio</a><span>/</span><span>WalletFlow Analytics</span></div>
+    <div class="case-hero-grid">
+      <div>
+        <p class="eyebrow">FINTECH ANALYTICS ENGINEERING CASE STUDY</p>
+        <h1>WalletFlow <span>Analytics</span></h1>
+        <p class="case-lede">A reporting layer for a fictional digital-wallet business, built to turn customer, wallet and transaction events into consistent product and performance metrics.</p>
+        <div class="case-note"><strong>Data:</strong> all records are generated for this project. No employer, customer or production data is included.</div>
+        <div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">View repository</a><a class="button secondary" href="#decisions">Key decisions</a></div>
+      </div>
+      <aside class="case-summary">
+        <div class="summary-label">PROJECT AT A GLANCE</div>
+        <div class="summary-grid">
+          <div><span>DOMAIN</span><strong>Digital wallet</strong></div>
+          <div><span>STACK</span><strong>dbt · BigQuery · Python</strong></div>
+          <div><span>GRAIN</span><strong>1 row per transaction</strong></div>
+          <div><span>PROCESSING</span><strong>Incremental MERGE</strong></div>
+          <div><span>QUALITY</span><strong>Schema + business-rule tests</strong></div>
+          <div><span>OUTPUT</span><strong>Product KPI marts</strong></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="story-grid">
+      <div><p class="story-label">01 / PROBLEM</p><h2>Operational transaction data is not automatically reporting-ready.</h2></div>
+      <div class="story-copy">
+        <p>The project starts with synthetic customer, wallet and transaction records. The modelling challenge is to create a stable analytics layer where transaction performance, customer activity and retention use consistent definitions.</p>
+        <p>Instead of calculating metrics independently in dashboards, the reporting logic is moved into dbt models so the same definitions can be reused across analysis and BI tools.</p>
+        <div class="question-list">
+          <div>How much transaction value is processed each day?</div>
+          <div>What percentage of transaction attempts succeed, fail or reverse?</div>
+          <div>How many customers are active each day and month?</div>
+          <div>How many monthly active customers return in the following month?</div>
+          <div>How do first-success customer cohorts retain over time?</div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="section container">
     <div class="dashboard">
-      <div class="dashboard-head"><div><p class="eyebrow">SYNTHETIC WALLET PERFORMANCE</p><h2>Transaction and engagement metrics</h2><p>Metrics calculated from the deterministic seed-42 dataset.</p></div><span class="status-pill">JAN TO JUN 2026</span></div>
+      <div class="dashboard-head"><div><p class="eyebrow">02 / REPORTING OUTPUT</p><h2>Transaction and engagement snapshot</h2><p>Metrics calculated from the deterministic seed-42 dataset.</p></div><span class="status-pill">JAN TO JUN 2026</span></div>
       <div class="dash-kpis">
-        <div class="kpi"><span>Gross transaction value</span><strong>₦145.85M</strong><small>5,000 transactions</small></div>
-        <div class="kpi"><span>Transaction success rate</span><strong>88.42%</strong><small>successful ÷ attempts</small></div>
-        <div class="kpi"><span>June MAU</span><strong>238</strong><small>monthly active users</small></div>
-        <div class="kpi"><span>June avg. DAU</span><strong>25.8</strong><small>daily active users</small></div>
-        <div class="kpi"><span>June DAU/MAU</span><strong>10.84%</strong><small>average DAU ÷ MAU</small></div>
-        <div class="kpi"><span>June retention</span><strong>95.06%</strong><small>vs May MAU</small></div>
+        <div class="kpi"><span>Gross transaction value</span><strong>₦145.85M</strong><small>5,000 attempts</small></div>
+        <div class="kpi"><span>Transaction success rate</span><strong>88.42%</strong><small>successful / attempts</small></div>
         <div class="kpi"><span>Successful value</span><strong>₦128.11M</strong><small>successful transactions</small></div>
         <div class="kpi"><span>Fees generated</span><strong>₦409.8K</strong><small>successful transactions</small></div>
+        <div class="kpi"><span>June MAU</span><strong>238</strong><small>monthly active users</small></div>
+        <div class="kpi"><span>June avg. DAU</span><strong>25.8</strong><small>daily active users</small></div>
+        <div class="kpi"><span>June DAU/MAU</span><strong>10.84%</strong><small>average DAU / MAU</small></div>
+        <div class="kpi"><span>June retention</span><strong>95.06%</strong><small>vs May MAU</small></div>
       </div>
       <div class="dash-grid">
         <div class="viz-card">
@@ -59,46 +97,68 @@
             </tbody>
           </table>
         </div>
-        <div class="viz-card"><h3>Metric definitions</h3><div class="metric-list"><div><span>DAU</span><strong>daily distinct customers</strong></div><div><span>MAU</span><strong>monthly distinct customers</strong></div><div><span>DAU/MAU</span><strong>avg DAU ÷ MAU</strong></div><div><span>Monthly retention</span><strong>returning ÷ prior MAU</strong></div><div><span>Cohort retention</span><strong>retained ÷ cohort size</strong></div><div><span>Success rate</span><strong>successful ÷ attempts</strong></div></div></div>
+        <div class="viz-card"><h3>Metric definitions</h3><div class="metric-list"><div><span>DAU</span><strong>daily distinct customers</strong></div><div><span>MAU</span><strong>monthly distinct customers</strong></div><div><span>DAU/MAU</span><strong>avg DAU / MAU</strong></div><div><span>Monthly retention</span><strong>returning / prior MAU</strong></div><div><span>Cohort retention</span><strong>retained / cohort size</strong></div><div><span>Success rate</span><strong>successful / attempts</strong></div></div></div>
       </div>
     </div>
   </section>
 
   <section class="section container">
-    <div class="section-heading"><p class="eyebrow">ARCHITECTURE</p><h2>Layered models from raw sources to reporting marts.</h2></div>
-    <div class="architecture">
-      <div class="layer"><span>01 / SOURCES</span><h3>Raw data</h3><p>Synthetic customer, wallet and transaction tables declared as dbt sources with source-level tests.</p><div class="arrow">→</div></div>
-      <div class="layer"><span>02 / STAGING</span><h3>Clean & standardise</h3><p>Explicit column selection, type conversion, controlled categories and null handling.</p><div class="arrow">→</div></div>
-      <div class="layer"><span>03 / CORE</span><h3>Facts & dimensions</h3><p>The transaction fact uses incremental MERGE processing, partitioning, clustering and a three-day lookback for delayed records.</p><div class="arrow">→</div></div>
-      <div class="layer"><span>04 / MARTS</span><h3>Reporting metrics</h3><p>Daily transaction metrics, DAU, MAU, DAU/MAU, monthly retention and cohort retention.</p></div>
+    <div class="case-heading"><p class="eyebrow">03 / ARCHITECTURE</p><h2>Layered models keep source cleanup, reusable logic and reporting separate.</h2></div>
+    <div class="architecture-line">
+      <div class="arch-box"><span>SOURCES</span><h3>Raw events</h3><p>Customers, wallets and transactions declared as dbt sources.</p></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box"><span>STAGING</span><h3>Standardise</h3><p>Explicit fields, types, categories and source-level checks.</p></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box"><span>CORE</span><h3>Facts and dimensions</h3><p>Incremental transaction fact and reusable customer model.</p></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box"><span>MARTS</span><h3>Reporting</h3><p>Daily KPIs, monthly engagement and cohort retention.</p></div>
+    </div>
+  </section>
+
+  <section id="decisions" class="section container">
+    <div class="case-heading"><p class="eyebrow">04 / KEY DECISIONS</p><h2>The project is built around choices that affect correctness, maintainability and cost.</h2></div>
+    <div class="decision-grid">
+      <article class="decision-card"><span class="mini-label">INCREMENTAL PROCESSING</span><h3>Reprocess recent history</h3><p>The transaction fact uses BigQuery MERGE processing and re-reads a configurable three-day window. This gives delayed transactions and recent corrections another chance to enter the fact table without rebuilding all history.</p><div class="code-block">vars:
+  incremental_lookback_days: 3
+
+unique_key: transaction_id
+strategy: merge</div></article>
+      <article class="decision-card"><span class="mini-label">GRAIN</span><h3>One row per transaction</h3><p>`transaction_id` defines the fact-table grain and also acts as the MERGE key. Matching records can be updated instead of appended as duplicates.</p><div class="code-block">transaction_id
+wallet_id
+customer_id
+amount_ngn
+status
+created_at</div></article>
+      <article class="decision-card"><span class="mini-label">ENGAGEMENT</span><h3>Transaction attempts count as activity</h3><p>DAU and MAU are based on customers who attempt a transaction. A failed payment is still evidence that the customer used the product. Successful activity remains useful for other measures, including the first-success cohort definition.</p></article>
+      <article class="decision-card"><span class="mini-label">RETENTION</span><h3>Monthly and cohort retention answer different questions</h3><p>Monthly retention compares current activity with the immediately previous month. Cohort retention groups customers by first successful transaction and tracks how those groups behave in later months.</p></article>
+      <article class="decision-card"><span class="mini-label">WAREHOUSE DESIGN</span><h3>Partition and cluster for common access patterns</h3><p>The transaction fact is partitioned by transaction date and clustered by customer ID, transaction type and status. These fields match common reporting and filtering patterns.</p></article>
+      <article class="decision-card"><span class="mini-label">DEPENDENCIES</span><h3>Explicit columns instead of SELECT *</h3><p>Transformation and test SQL names the fields it depends on. This makes upstream schema changes easier to review and prevents unnecessary fields from flowing through the project.</p></article>
     </div>
   </section>
 
   <section class="section container">
-    <div class="section-heading"><p class="eyebrow">IMPLEMENTATION DETAILS</p><h2>Key modelling and quality decisions.</h2></div>
-    <div class="case-grid">
-      <article class="case-card"><span class="mini-label">COLUMN DEPENDENCIES</span><h3>Explicit column selection</h3><p>Transformation and test SQL name the fields they depend on. This makes schema changes easier to review and prevents unnecessary fields from flowing downstream.</p><div class="sql-rule">select
-    transaction_id,
-    customer_id,
-    amount_ngn,
-    status,
-    created_at
-from {{ ref('stg_transactions') }}</div></article>
+    <div class="case-heading"><p class="eyebrow">05 / DATA QUALITY</p><h2>Tests protect both structure and business meaning.</h2></div>
+    <div class="quality-grid">
+      <article class="quality-card"><h3>Structural checks</h3><ul><li>Primary keys are unique and non-null.</li><li>Transactions reference valid customers and wallets.</li><li>Statuses and transaction types use accepted values.</li><li>Successful transactions require completion timestamps.</li><li>Transaction amounts must be positive.</li></ul></article>
+      <article class="quality-card"><h3>Business-rule checks</h3><ul><li>Status flags must be mutually exclusive.</li><li>Daily status counts must reconcile to transaction count.</li><li>Average DAU cannot exceed MAU.</li><li>Retained customers cannot exceed the comparison population.</li><li>Month-zero cohort retention must equal 100%.</li><li>Rate metrics must remain between 0 and 1.</li></ul></article>
+    </div>
+    <div class="production-note"><span class="mini-label">PRODUCTION CONSIDERATION</span><h3>Freshness and late-arrival logic would use true ingestion metadata.</h3><p>The synthetic source does not contain a warehouse ingestion timestamp, so `created_at` is used as a freshness proxy. In a production implementation I would prefer a field such as `loaded_at`, `_ingested_at` or a reliable update timestamp. I would also choose the lookback window from observed source-arrival behaviour rather than treating three days as a universal rule.</p></div>
+  </section>
 
-      <article class="case-card"><span class="mini-label">INCREMENTAL PROCESSING</span><h3>Late-arriving transactions</h3><p>The transaction fact reprocesses a configurable three-day window on incremental runs. `transaction_id` is the MERGE key, so existing records can be updated without creating duplicates.</p><div class="sql-rule">vars:
-  incremental_lookback_days: 3</div></article>
-
-      <article class="case-card"><span class="mini-label">TESTING</span><h3>Structural and business checks</h3><p>Tests cover keys, relationships, accepted values, positive amounts, transaction-status reconciliation, composite grains and retention rules.</p><ul><li>Average DAU cannot exceed MAU.</li><li>Retained customers cannot exceed the comparison population.</li><li>Month-zero cohort retention must equal 100%.</li><li>Retention and success rates must remain between 0 and 1.</li></ul></article>
-
-      <article class="case-card"><span class="mini-label">CI</span><h3>Pull-request checks</h3><p>GitHub Actions checks model and test SQL for `SELECT *`. When BigQuery credentials are configured, the workflow also runs `dbt seed`, `dbt build` and `dbt source freshness`.</p></article>
-
-      <article class="case-card"><span class="mini-label">ENGAGEMENT</span><h3>DAU and MAU</h3><p>DAU counts distinct customers with at least one transaction attempt on a day. MAU counts distinct customers with activity in a month. Average DAU divided by MAU provides a monthly usage-frequency measure.</p></article>
-
-      <article class="case-card"><span class="mini-label">RETENTION</span><h3>Monthly and cohort retention</h3><p>Monthly retention measures customers who were active in both the current and previous month. Cohort retention groups customers by first successful transaction and tracks successful activity in later months.</p></article>
+  <section class="section container">
+    <div class="case-heading"><p class="eyebrow">06 / DELIVERY</p><h2>Automated checks keep the repository reviewable.</h2></div>
+    <div class="quality-grid">
+      <article class="quality-card"><h3>GitHub Actions</h3><p>Pull requests run repository checks, including protection against `SELECT *` in model and test SQL. When BigQuery credentials are configured, the workflow can also run `dbt seed`, `dbt build` and `dbt source freshness`.</p></article>
+      <article class="quality-card"><h3>Reporting layer</h3><p>The final marts are designed for BI consumption so product metrics are defined upstream rather than recreated separately in Looker, Looker Studio or Power BI.</p></article>
     </div>
   </section>
 
-  <section class="section contact-section"><div class="container contact-card"><p class="eyebrow">PROJECT SUMMARY</p><h2>WalletFlow combines data modelling, quality checks and product reporting.</h2><p>The project starts with generated wallet data, standardises it in staging models, builds an incremental transaction fact and customer dimension, and exposes reporting marts for transaction performance, engagement and retention. Tests cover structural integrity and business rules, while CI checks SQL conventions and can run dbt builds against BigQuery.</p><div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">View code</a><a class="button secondary" href="index.html">Portfolio home</a></div></div></section>
+  <section class="section container">
+    <div class="case-nav">
+      <a href="index.html#projects"><span>BACK</span><strong>Portfolio projects</strong></a>
+      <a href="careflow.html"><span>NEXT CASE STUDY</span><strong>CareFlow Health Analytics →</strong></a>
+    </div>
+  </section>
 </main>
 <footer class="footer container"><p>WalletFlow Analytics · Fuad Abiola Adebisi</p><a href="#top">Back to top ↑</a></footer>
 </body>
