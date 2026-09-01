@@ -16,13 +16,14 @@ if (menuToggle && navLinks) {
 }
 
 const heroActions = document.querySelector('.hero .hero-actions');
-if (heroActions && !heroActions.querySelector('[data-resume-link]')) {
-  const resumeLink = document.createElement('a');
-  resumeLink.className = 'button secondary';
-  resumeLink.href = 'resume.html';
-  resumeLink.dataset.resumeLink = 'true';
-  resumeLink.textContent = 'View CV';
-  heroActions.appendChild(resumeLink);
+if (heroActions && !heroActions.querySelector('[data-resume-download]')) {
+  const resumeDownload = document.createElement('a');
+  resumeDownload.className = 'button secondary';
+  resumeDownload.href = 'Fuad_Adebisi_Analytics_Engineer_CV.pdf';
+  resumeDownload.setAttribute('download', 'Fuad_Adebisi_Analytics_Engineer_CV.pdf');
+  resumeDownload.dataset.resumeDownload = 'true';
+  resumeDownload.textContent = 'Download CV';
+  heroActions.appendChild(resumeDownload);
 }
 
 if (navLinks && !navLinks.querySelector('[data-resume-nav]')) {
@@ -31,6 +32,18 @@ if (navLinks && !navLinks.querySelector('[data-resume-nav]')) {
   resumeNav.dataset.resumeNav = 'true';
   resumeNav.textContent = 'CV';
   navLinks.appendChild(resumeNav);
+}
+
+const contactActions = document.querySelector('#contact .hero-actions');
+if (contactActions && !contactActions.querySelector('[data-linkedin-contact]')) {
+  const linkedIn = document.createElement('a');
+  linkedIn.className = 'button secondary';
+  linkedIn.href = 'https://www.linkedin.com/in/FuadAdebisi';
+  linkedIn.target = '_blank';
+  linkedIn.rel = 'noreferrer';
+  linkedIn.dataset.linkedinContact = 'true';
+  linkedIn.textContent = 'LinkedIn';
+  contactActions.appendChild(linkedIn);
 }
 
 const observer = new IntersectionObserver(
