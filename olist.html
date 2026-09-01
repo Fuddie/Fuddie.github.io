@@ -3,87 +3,129 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Olist Analytics, a production-oriented analytics engineering project by Fuad Abiola Adebisi using Snowflake, dbt Cloud, SQL, GitHub Actions, incremental MERGE models and dimensional modelling." />
+  <meta name="description" content="Olist Analytics, a production-oriented analytics engineering case study by Fuad Abiola Adebisi using Snowflake, dbt Cloud, SQL, GitHub Actions, incremental MERGE models and dimensional modelling." />
   <title>Olist Analytics | Fuad Adebisi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .case-hero{padding:110px 0 58px}.case-hero h1{font-size:clamp(3rem,7vw,6rem);line-height:1;letter-spacing:-.05em;margin:14px 0 24px}.case-hero h1 span{color:var(--accent)}.case-lede{font-size:1.18rem;color:var(--muted);max-width:900px}.case-note{margin-top:24px;padding:14px 16px;border-left:3px solid var(--accent);background:rgba(120,167,255,.06);color:var(--muted)}
-    .dashboard{border:1px solid var(--line);border-radius:20px;background:#0b1626;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.25)}.dashboard-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:24px}.dashboard-head h2{margin:0;font-size:1.55rem}.dashboard-head p{margin:4px 0 0;color:var(--muted)}.status-pill{font-family:'JetBrains Mono',monospace;font-size:.72rem;border:1px solid var(--line);padding:6px 10px;border-radius:999px;color:var(--accent)}
-    .dash-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:18px}.kpi span{display:block;color:var(--muted);font-size:.82rem}.kpi strong{display:block;font-size:1.7rem;margin-top:5px;letter-spacing:-.04em}.kpi small{color:var(--accent);font-family:'JetBrains Mono',monospace}
-    .architecture{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}.layer{border:1px solid var(--line);border-radius:14px;padding:22px;background:rgba(255,255,255,.02)}.layer span{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.75rem}.layer h3{margin:10px 0}.layer p{color:var(--muted);font-size:.92rem}.arrow{color:var(--accent);text-align:center;font-size:1.6rem;margin-top:14px}
-    .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.case-card{border:1px solid var(--line);border-radius:16px;padding:26px;background:rgba(255,255,255,.02)}.case-card h3{margin-top:0}.case-card p,.case-card li{color:var(--muted)}.mini-label{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.75rem}.case-card ul{padding-left:20px}.code-block{font-family:'JetBrains Mono',monospace;font-size:.83rem;background:#08101d;border:1px solid var(--line);border-radius:12px;padding:18px;white-space:pre-wrap;color:#c8daf4}
-    @media(max-width:900px){.dash-kpis{grid-template-columns:repeat(2,1fr)}.case-grid{grid-template-columns:1fr}.architecture{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.dash-kpis,.architecture{grid-template-columns:1fr}.dashboard{padding:16px}.dashboard-head{align-items:flex-start;flex-direction:column}}
+    .case-shell{padding:110px 0 54px}.case-breadcrumb{display:flex;gap:10px;align-items:center;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.78rem}.case-breadcrumb a{color:var(--accent)}
+    .case-hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:44px;align-items:end;margin-top:28px}.case-shell h1{font-size:clamp(3.3rem,7vw,6.7rem);line-height:.96;letter-spacing:-.055em;margin:12px 0 24px}.case-shell h1 span{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;color:transparent}.case-lede{font-size:1.2rem;color:var(--muted);max-width:900px}.case-note{margin-top:22px;padding:14px 16px;border-left:3px solid var(--accent);background:rgba(120,167,255,.06);color:var(--muted)}
+    .case-summary{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.025);overflow:hidden}.summary-label{padding:12px 16px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.72rem}.summary-grid{display:grid;grid-template-columns:1fr 1fr}.summary-grid div{padding:18px;border-bottom:1px solid var(--line)}.summary-grid div:nth-child(odd){border-right:1px solid var(--line)}.summary-grid div:nth-last-child(-n+2){border-bottom:0}.summary-grid span{display:block;color:var(--muted);font-size:.78rem;margin-bottom:5px}.summary-grid strong{font-size:.96rem}
+    .story-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px}.story-label{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.76rem;letter-spacing:.1em}.story-grid h2,.case-heading h2{font-size:clamp(2.2rem,4vw,4rem);line-height:1.05;letter-spacing:-.04em;margin:12px 0 22px}.story-copy{color:var(--muted);font-size:1.06rem}.story-copy p+p{margin-top:18px}.question-list{display:grid;gap:10px;margin-top:22px}.question-list div{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:rgba(255,255,255,.02);color:#dce6f4}
+    .dashboard{border:1px solid var(--line);border-radius:22px;background:#0b1626;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.25)}.dashboard-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:24px}.dashboard-head h2{margin:0;font-size:1.6rem}.dashboard-head p{margin:4px 0 0;color:var(--muted)}.status-pill{font-family:'JetBrains Mono',monospace;font-size:.72rem;border:1px solid var(--line);padding:6px 10px;border-radius:999px;color:var(--accent)}
+    .dash-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.kpi{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:18px}.kpi span{display:block;color:var(--muted);font-size:.8rem}.kpi strong{display:block;font-size:1.65rem;margin-top:5px;letter-spacing:-.04em}.kpi small{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:.72rem}
+    .architecture-line{display:grid;grid-template-columns:repeat(7,auto);align-items:stretch;gap:10px;margin-top:34px}.arch-box{min-width:0;border:1px solid var(--line);border-radius:15px;padding:20px;background:rgba(255,255,255,.025)}.arch-box span{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.72rem}.arch-box h3{margin:9px 0}.arch-box p{color:var(--muted);font-size:.88rem;margin-bottom:0}.arch-arrow{align-self:center;color:var(--accent);font-size:1.6rem}
+    .decision-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}.decision-card{border:1px solid var(--line);border-radius:17px;padding:26px;background:rgba(255,255,255,.022)}.decision-card h3{margin:8px 0 12px}.decision-card p,.decision-card li{color:var(--muted)}.decision-card ul{padding-left:18px;margin-bottom:0}.mini-label{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:.72rem}.code-block{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#07101c;border:1px solid var(--line);border-radius:12px;padding:16px;overflow:auto;color:#c8daf4;white-space:pre-wrap;margin-top:16px}
+    .quality-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}.quality-card{border:1px solid var(--line);border-radius:16px;padding:24px;background:rgba(255,255,255,.02)}.quality-card h3{margin-top:0}.quality-card p,.quality-card li{color:var(--muted)}.quality-card ul{padding-left:18px}.production-note{border:1px solid var(--line);border-radius:18px;padding:28px;background:linear-gradient(135deg,rgba(120,167,255,.08),rgba(166,135,255,.05));margin-top:30px}.production-note p{color:var(--muted);margin-bottom:0}
+    .env-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}.env-card{border:1px solid var(--line);border-radius:17px;padding:25px;background:rgba(255,255,255,.02)}.env-card h3{margin:8px 0 12px}.env-card p{color:var(--muted)}
+    .case-nav{display:grid;grid-template-columns:1fr 1fr;gap:18px}.case-nav a{border:1px solid var(--line);border-radius:16px;padding:24px;background:rgba(255,255,255,.02)}.case-nav span{display:block;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.72rem}.case-nav strong{display:block;font-size:1.15rem;margin-top:7px;color:var(--text)}
+    @media(max-width:1000px){.case-hero-grid,.story-grid{grid-template-columns:1fr}.architecture-line{grid-template-columns:1fr}.arch-arrow{text-align:center;transform:rotate(90deg)}.dash-kpis{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:720px){.decision-grid,.quality-grid,.env-grid,.case-nav{grid-template-columns:1fr}.summary-grid{grid-template-columns:1fr}.summary-grid div{border-right:0!important;border-bottom:1px solid var(--line)!important}.summary-grid div:last-child{border-bottom:0!important}.dash-kpis{grid-template-columns:1fr}.dashboard{padding:16px}.dashboard-head{align-items:flex-start;flex-direction:column}}
   </style>
 </head>
 <body id="top">
-<header class="site-header"><nav class="nav container"><a class="brand" href="index.html">FA<span>.</span></a><div class="nav-links"><a href="index.html#projects">Projects</a><a href="https://github.com/Fuddie/olist-analytics" target="_blank" rel="noreferrer">Repository ↗</a><a href="mailto:fuddiebiola@gmail.com">Contact</a></div></nav></header>
+<header class="site-header"><nav class="nav container"><a class="brand" href="index.html">FA<span>.</span></a><div class="nav-links"><a href="index.html#projects">Projects</a><a href="walletflow.html">WalletFlow</a><a href="careflow.html">CareFlow</a><a href="https://github.com/Fuddie/olist-analytics" target="_blank" rel="noreferrer">Repository ↗</a></div></nav></header>
 <main>
-  <section class="case-hero container">
-    <p class="eyebrow">SNOWFLAKE + dbt ANALYTICS ENGINEERING PROJECT</p>
-    <h1>Olist <span>Analytics</span></h1>
-    <p class="case-lede">A production-oriented analytics engineering pipeline built on Snowflake and dbt Cloud using the Brazilian Olist e-commerce dataset. The project covers layered modelling, dimensional marts, ingestion-based incremental processing, automated data tests, pull-request CI, workload isolation, service-user authentication and scheduled production deployment.</p>
-    <div class="case-note"><strong>Data:</strong> public Olist e-commerce data. The project is independent portfolio work and contains no employer or customer data.</div>
-    <div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/olist-analytics" target="_blank" rel="noreferrer">View repository</a><a class="button secondary" href="index.html#projects">Back to projects</a></div>
+  <section class="case-shell container">
+    <div class="case-breadcrumb"><a href="index.html#projects">Portfolio</a><span>/</span><span>Olist Analytics</span></div>
+    <div class="case-hero-grid">
+      <div>
+        <p class="eyebrow">SNOWFLAKE + dbt CLOUD CASE STUDY</p>
+        <h1>Olist <span>Analytics</span></h1>
+        <p class="case-lede">A production-oriented analytics engineering pipeline built on Snowflake and dbt Cloud using the Brazilian Olist e-commerce dataset.</p>
+        <div class="case-note"><strong>Data:</strong> public Olist e-commerce data. This is independent portfolio work and contains no employer or customer data.</div>
+        <div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/olist-analytics" target="_blank" rel="noreferrer">View repository</a><a class="button secondary" href="#decisions">Key decisions</a></div>
+      </div>
+      <aside class="case-summary">
+        <div class="summary-label">PROJECT AT A GLANCE</div>
+        <div class="summary-grid">
+          <div><span>WAREHOUSE</span><strong>Snowflake</strong></div>
+          <div><span>TRANSFORM</span><strong>dbt Cloud</strong></div>
+          <div><span>FACT GRAINS</span><strong>Order + order item</strong></div>
+          <div><span>INCREMENTAL</span><strong>Ingestion watermark MERGE</strong></div>
+          <div><span>DEPLOYMENT</span><strong>12-hour production job</strong></div>
+          <div><span>SECURITY</span><strong>RBAC + RSA key pair</strong></div>
+        </div>
+      </aside>
+    </div>
   </section>
 
   <section class="section container">
-    <div class="dashboard">
-      <div class="dashboard-head"><div><p class="eyebrow">PRODUCTION VALIDATION</p><h2>Hardened pipeline deployed and validated</h2><p>Validated after release into isolated production schemas and compute.</p></div><span class="status-pill">PRODUCTION READY</span></div>
-      <div class="dash-kpis">
-        <div class="kpi"><span>Orders fact</span><strong>99,441</strong><small>99,441 distinct order IDs</small></div>
-        <div class="kpi"><span>Order-item fact</span><strong>112,650</strong><small>0 duplicate composite keys</small></div>
-        <div class="kpi"><span>Source tables</span><strong>9</strong><small>RAW.OLIST</small></div>
-        <div class="kpi"><span>Production schedule</span><strong>12h</strong><small>dbt build orchestration</small></div>
-        <div class="kpi"><span>Fact tables</span><strong>2</strong><small>orders + order items</small></div>
-        <div class="kpi"><span>Dimensions</span><strong>3</strong><small>customer, product, seller</small></div>
-        <div class="kpi"><span>Watermark nulls</span><strong>0</strong><small>both production facts</small></div>
-        <div class="kpi"><span>Production warehouse</span><strong>DBT_PROD_WH</strong><small>isolated compute</small></div>
+    <div class="story-grid">
+      <div><p class="story-label">01 / PROBLEM</p><h2>Build an e-commerce pipeline that behaves like a production analytics system.</h2></div>
+      <div class="story-copy">
+        <p>The source contains nine related Olist datasets with one-to-many relationships across orders, items, payments, reviews, products, sellers and customers. The modelling challenge is not just cleaning the data. It is preserving the correct grain while producing reliable dimensional marts.</p>
+        <p>The project also adds production concerns that are often missing from portfolio work: separate development and production compute, ingestion-driven incrementality, pull-request CI, service authentication, controlled consumer access and scheduled deployment.</p>
+        <div class="question-list">
+          <div>How should order-level and item-level activity be modelled without duplicating measures?</div>
+          <div>How can incremental facts respond to newly ingested records rather than business dates?</div>
+          <div>How should development and production workloads be isolated?</div>
+          <div>How can production transformations run without interactive user credentials?</div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section container">
-    <div class="section-heading"><p class="eyebrow">ARCHITECTURE</p><h2>Separate raw, transformation and production layers.</h2></div>
-    <div class="architecture">
-      <div class="layer"><span>01 / RAW</span><h3>RAW.OLIST</h3><p>Nine Olist sources with persistent <code>_LOADED_AT</code> ingestion metadata.</p><div class="arrow">→</div></div>
-      <div class="layer"><span>02 / STAGING</span><h3>Standardise</h3><p>Explicit columns, cleaning, naming and source metadata propagation.</p><div class="arrow">→</div></div>
-      <div class="layer"><span>03 / INTERMEDIATE</span><h3>Enrich & aggregate</h3><p>Reusable joins and order-level aggregations that protect downstream grain.</p><div class="arrow">→</div></div>
-      <div class="layer"><span>04 / MARTS</span><h3>Dimensional model</h3><p>Three dimensions plus order and order-item transactional facts.</p></div>
+    <div class="dashboard">
+      <div class="dashboard-head"><div><p class="eyebrow">02 / PRODUCTION VALIDATION</p><h2>Hardened pipeline deployed and validated</h2><p>Post-deployment checks confirm the expected fact grains and ingestion watermarks.</p></div><span class="status-pill">DEPLOYED</span></div>
+      <div class="dash-kpis">
+        <div class="kpi"><span>Orders fact</span><strong>99,441</strong><small>99,441 distinct order IDs</small></div>
+        <div class="kpi"><span>Order-item fact</span><strong>112,650</strong><small>0 duplicate composite keys</small></div>
+        <div class="kpi"><span>Source tables</span><strong>9</strong><small>RAW.OLIST</small></div>
+        <div class="kpi"><span>Dimensions</span><strong>3</strong><small>customer, product, seller</small></div>
+        <div class="kpi"><span>Fact tables</span><strong>2</strong><small>orders + order items</small></div>
+        <div class="kpi"><span>Watermark nulls</span><strong>0</strong><small>both production facts</small></div>
+        <div class="kpi"><span>Production schedule</span><strong>12h</strong><small>dbt build orchestration</small></div>
+        <div class="kpi"><span>Production compute</span><strong>DBT_PROD_WH</strong><small>isolated warehouse</small></div>
+      </div>
     </div>
   </section>
 
   <section class="section container">
-    <div class="section-heading"><p class="eyebrow">IMPLEMENTATION</p><h2>Production engineering decisions built into the project.</h2></div>
-    <div class="case-grid">
-      <article class="case-card"><span class="mini-label">INCREMENTAL PROCESSING</span><h3>Ingestion-based watermarks</h3><p>The original business-date lookback was replaced with persistent ingestion metadata. Watermarks propagate from RAW into downstream models and drive incremental Snowflake MERGE operations.</p><div class="code-block">RAW._LOADED_AT
-  ↓
+    <div class="case-heading"><p class="eyebrow">03 / ARCHITECTURE</p><h2>Raw sources flow through layered transformations into dimensional marts.</h2></div>
+    <div class="architecture-line">
+      <div class="arch-box"><span>RAW</span><h3>RAW.OLIST</h3><p>Nine public source tables with persistent `_LOADED_AT` ingestion metadata.</p></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box"><span>STAGING</span><h3>Standardise</h3><p>Explicit columns, cleaning, naming and ingestion metadata propagation.</p></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box"><span>INTERMEDIATE</span><h3>Protect grain</h3><p>Reusable enrichment and order-level aggregation before downstream joins.</p></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box"><span>MARTS</span><h3>Dimensional model</h3><p>Three dimensions plus order and order-item transactional facts.</p></div>
+    </div>
+  </section>
+
+  <section id="decisions" class="section container">
+    <div class="case-heading"><p class="eyebrow">04 / KEY DECISIONS</p><h2>Production behaviour is designed into the modelling workflow.</h2></div>
+    <div class="decision-grid">
+      <article class="decision-card"><span class="mini-label">DIMENSIONAL MODELLING</span><h3>Keep two transactional fact grains</h3><p>`fct_orders` provides one row per order. `fct_order_items` provides one row per `(order_id, order_item_id)`. Keeping both facts prevents item-level joins from multiplying order-level measures while still connecting product and seller dimensions to transactions.</p></article>
+      <article class="decision-card"><span class="mini-label">INCREMENTAL PROCESSING</span><h3>Use ingestion metadata, not purchase date</h3><p>Persistent `_LOADED_AT` timestamps are propagated from RAW through staging and intermediate models into `record_loaded_at`. Both facts use these watermarks to drive Snowflake MERGE processing.</p><div class="code-block">RAW._LOADED_AT
+    ↓
 staging._loaded_at
-  ↓
+    ↓
 intermediate.record_loaded_at
-  ↓
+    ↓
 incremental MERGE</div></article>
-      <article class="case-card"><span class="mini-label">DIMENSIONAL MODELLING</span><h3>Two fact grains</h3><p><code>fct_orders</code> provides one row per order while <code>fct_order_items</code> provides one row per order-item key. This preserves order KPIs while correctly connecting product and seller dimensions to transactional activity.</p></article>
-      <article class="case-card"><span class="mini-label">ENVIRONMENT ISOLATION</span><h3>Separate DEV and PROD compute</h3><p>Development uses <code>DEV_WH</code> and production uses <code>DBT_PROD_WH</code>. Production models are also split across staging, intermediate and mart schemas rather than sharing one catch-all schema.</p></article>
-      <article class="case-card"><span class="mini-label">SECURITY</span><h3>Service identity and RBAC</h3><p>Production runs through <code>DBT_USER</code> and <code>DBT_ROLE</code> with RSA key-pair authentication. A separate read-only analytics role limits consumer access to the production marts.</p></article>
-      <article class="case-card"><span class="mini-label">QUALITY</span><h3>Structural and business tests</h3><p>Tests cover keys, relationships, accepted values, fact grains and non-negative commercial values. Known timestamp and payment reconciliation anomalies are surfaced as warnings instead of silently ignored.</p></article>
-      <article class="case-card"><span class="mini-label">DELIVERY</span><h3>Feature branch → CI → production</h3><p>Changes move through feature branches and pull requests. GitHub Actions validates dbt project parsing and graph integrity before merge, followed by DEV validation and a controlled dbt Cloud production deployment.</p></article>
+      <article class="decision-card"><span class="mini-label">WATERMARK LOGIC</span><h3>Reprocess the current ingestion batch safely</h3><p>The incremental predicate uses `>=` against the current maximum watermark. Rows from the same ingestion batch can be seen again, while the fact-table merge keys prevent duplicate records.</p></article>
+      <article class="decision-card"><span class="mini-label">ENVIRONMENT ISOLATION</span><h3>Separate DEV and PROD compute</h3><p>Development uses `DEV_WH`, while production uses `DBT_PROD_WH`. Production models also land in dedicated staging, intermediate and mart schemas rather than sharing one general-purpose schema.</p></article>
+      <article class="decision-card"><span class="mini-label">SECURITY</span><h3>Production runs through a service identity</h3><p>`DBT_USER` and `DBT_ROLE` use RSA key-pair authentication for production dbt jobs. A separate `ANALYTICS_READER_ROLE` gives consumers read-only access to production marts without transformation privileges.</p></article>
+      <article class="decision-card"><span class="mini-label">OPTIMISATION</span><h3>Do not add clustering by default</h3><p>Clustering is treated as an evidence-driven warehouse optimisation. The project keeps correctness and grain explicit first, then leaves physical optimisation to observed query patterns and cost.</p></article>
     </div>
   </section>
 
   <section class="section container">
-    <div class="section-heading"><p class="eyebrow">PRODUCTION LAYOUT</p><h2>Layered Snowflake schemas and isolated identities.</h2></div>
-    <div class="case-grid">
-      <article class="case-card"><span class="mini-label">DEVELOPMENT</span><div class="code-block">DEV_USER / DEV_ROLE
+    <div class="case-heading"><p class="eyebrow">05 / ENVIRONMENTS</p><h2>Development and production are isolated by identity, compute and schema.</h2></div>
+    <div class="env-grid">
+      <article class="env-card"><span class="mini-label">DEVELOPMENT</span><h3>DEV</h3><div class="code-block">DEV_USER / DEV_ROLE
         ↓
 DEV_WH
         ↓
 DEV.DBT_DEV_STAGING
 DEV.DBT_DEV_INTERMEDIATE
 DEV.DBT_DEV_MARTS</div></article>
-      <article class="case-card"><span class="mini-label">PRODUCTION</span><div class="code-block">DBT_USER / DBT_ROLE
+      <article class="env-card"><span class="mini-label">PRODUCTION</span><h3>PROD</h3><div class="code-block">DBT_USER / DBT_ROLE
         ↓
 DBT_PROD_WH
         ↓
@@ -93,7 +135,21 @@ PROD.ANALYTICS_MARTS</div></article>
     </div>
   </section>
 
-  <section class="section contact-section"><div class="container contact-card"><p class="eyebrow">PROJECT SUMMARY</p><h2>A complete Snowflake + dbt production workflow.</h2><p>Olist Analytics goes beyond model creation: it demonstrates environment isolation, dimensional modelling, incremental MERGE logic, ingestion watermarks, data-quality controls, pull-request CI, secure service authentication and production orchestration. The current source is a static historical snapshot, so automated RAW ingestion and blocking source freshness remain the next logical extension.</p><div class="hero-actions"><a class="button primary" href="https://github.com/Fuddie/olist-analytics" target="_blank" rel="noreferrer">View code</a><a class="button secondary" href="index.html">Portfolio home</a></div></div></section>
+  <section class="section container">
+    <div class="case-heading"><p class="eyebrow">06 / QUALITY AND DELIVERY</p><h2>Tests, pull-request checks and deployment controls protect the pipeline.</h2></div>
+    <div class="quality-grid">
+      <article class="quality-card"><h3>Data quality</h3><ul><li>Primary keys and composite grains are tested.</li><li>Relationships and accepted categorical values are validated.</li><li>Commercial values are checked for invalid negative values.</li><li>Known timestamp and reconciliation anomalies are surfaced as warnings instead of being hidden.</li><li>Production validation confirms no duplicate order or order-item grains.</li></ul></article>
+      <article class="quality-card"><h3>Delivery workflow</h3><ul><li>Changes are developed through feature branches.</li><li>Pull-request CI checks dbt parsing and graph integrity before merge.</li><li>Changes are validated in DEV before production deployment.</li><li>dbt Cloud runs the production build on a 12-hour schedule.</li><li>Post-deployment SQL validates the production marts after release.</li></ul></article>
+    </div>
+    <div class="production-note"><span class="mini-label">CURRENT LIMITATION</span><h3>The source is static, so ingestion is not yet automated.</h3><p>The watermark mechanism is implemented, but the public Olist dataset is a historical snapshot. Automated RAW ingestion is therefore the next logical extension. A future version could add object-storage or Snowpipe ingestion, warehouse-backed Slim CI, snapshots, semantic definitions, BI dashboards and cost monitoring.</p></div>
+  </section>
+
+  <section class="section container">
+    <div class="case-nav">
+      <a href="careflow.html"><span>PREVIOUS CASE STUDY</span><strong>← CareFlow Health Analytics</strong></a>
+      <a href="index.html#projects"><span>BACK</span><strong>Portfolio projects</strong></a>
+    </div>
+  </section>
 </main>
 <footer class="footer container"><p>Olist Analytics · Fuad Abiola Adebisi</p><a href="#top">Back to top ↑</a></footer>
 </body>
