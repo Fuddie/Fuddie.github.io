@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Fuad Abiola Adebisi, Analytics Engineer portfolio featuring dbt, SQL, BigQuery, data modelling, business intelligence and selected analytics projects." />
-  <meta name="keywords" content="Analytics Engineer, dbt, BigQuery, SQL, DataForm, Looker, Power BI, analytics engineering, business intelligence" />
+  <meta name="description" content="Fuad Abiola Adebisi, Analytics Engineer portfolio featuring dbt, SQL, BigQuery, Snowflake, data modelling, business intelligence and analytics engineering projects." />
+  <meta name="keywords" content="Analytics Engineer, dbt, BigQuery, Snowflake, SQL, DataForm, Looker, Power BI, analytics engineering, business intelligence" />
   <meta name="author" content="Fuad Abiola Adebisi" />
   <meta property="og:title" content="Fuad Adebisi | Analytics Engineer" />
-  <meta property="og:description" content="Analytics Engineer portfolio covering data modelling, reporting, business intelligence and selected data projects." />
+  <meta property="og:description" content="Analytics Engineer portfolio covering data modelling, tested reporting layers, business intelligence and production-oriented data projects." />
   <meta property="og:type" content="website" />
   <title>Fuad Adebisi | Analytics Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,9 +21,9 @@
       <a class="brand" href="#top">FA<span>.</span></a>
       <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </div>
@@ -33,11 +33,12 @@
   <main id="top">
     <section class="hero container section">
       <div class="hero-copy reveal">
-        <p class="eyebrow">ANALYTICS ENGINEER · DATA MODELLING · dbt · SQL · BIGQUERY · BUSINESS INTELLIGENCE</p>
-        <h1>I build <span>reliable data models</span> for reporting and decision-making.</h1>
-        <p class="hero-text">I’m Fuad Abiola Adebisi, an Analytics Engineer with 4+ years of experience building data models, transformation pipelines and reporting solutions used by product and business teams. I work with dbt, DataForm, BigQuery, SQL, Looker and Power BI.</p>
+        <div class="availability"><span class="availability-dot" aria-hidden="true"></span>Open to Analytics Engineering, BI Engineering and Data Engineering roles</div>
+        <p class="eyebrow">ANALYTICS ENGINEER · DATA MODELLING · dbt · SQL · BIGQUERY · SNOWFLAKE</p>
+        <h1>I turn raw data into <span>trusted models, metrics and reporting systems.</span></h1>
+        <p class="hero-text">I’m Fuad Abiola Adebisi, an Analytics Engineer with 4+ years of experience building transformation pipelines, reusable data models and reporting solutions for product and business teams.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#projects">View projects</a>
+          <a class="button primary" href="#projects">Explore featured work</a>
           <a class="button secondary" href="mailto:fuddiebiola@gmail.com">Email me</a>
         </div>
         <div class="social-row">
@@ -46,16 +47,16 @@
         </div>
       </div>
 
-      <aside class="hero-panel reveal" aria-label="Career highlights">
-        <div class="code-label">career_snapshot.json</div>
-        <pre><code>{
-  "role": "Analytics Engineer",
-  "experience": "4+ years",
-  "data_products": "10+",
-  "rows_processed": "~200M",
-  "customers_supported": "10M+",
-  "stack": ["dbt", "DataForm", "BigQuery", "SQL"]
-}</code></pre>
+      <aside class="hero-panel reveal" aria-label="Career profile">
+        <div class="code-label">analytics_engineer.profile</div>
+        <div class="profile-panel">
+          <div class="profile-row"><span>ROLE</span><strong>Analytics Engineer</strong></div>
+          <div class="profile-row"><span>EXPERIENCE</span><strong>4+ years</strong></div>
+          <div class="profile-row"><span>FOCUS</span><strong>Modelling · Metrics · Reporting</strong></div>
+          <div class="profile-row"><span>WAREHOUSES</span><strong>BigQuery · Snowflake</strong></div>
+          <div class="profile-row"><span>TRANSFORM</span><strong>dbt · DataForm · SQL</strong></div>
+          <div class="profile-row"><span>BI</span><strong>Looker · Power BI</strong></div>
+        </div>
       </aside>
     </section>
 
@@ -66,9 +67,132 @@
       <article><strong>60+</strong><span>colleagues trained</span></article>
     </section>
 
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <div class="section-heading reveal project-heading">
+          <p class="eyebrow">01 / FEATURED WORK</p>
+          <h2>Analytics engineering projects built around real modelling decisions.</h2>
+          <p class="section-intro">Each project starts with operational data and ends with tested, reporting-ready models. Personal projects use public or synthetic data and are separate from employer work.</p>
+        </div>
+
+        <div class="featured-work">
+          <article class="featured-project reveal">
+            <div class="featured-project-copy">
+              <div class="project-topline"><span class="project-number">01</span><span class="badge">SYNTHETIC FINTECH</span></div>
+              <p class="project-kicker">DIGITAL WALLET ANALYTICS PLATFORM</p>
+              <h3>WalletFlow Analytics</h3>
+              <p>A dbt and BigQuery analytics layer for transaction performance, customer activity and retention. The project includes incremental MERGE processing, late-arriving transaction handling, source freshness, business-rule tests and governed product KPIs.</p>
+              <div class="decision-strip">
+                <div><span>KEY DECISION</span><strong>3-day incremental lookback</strong></div>
+                <div><span>REPORTING</span><strong>GTV · DAU · MAU · Retention</strong></div>
+              </div>
+              <div class="tags"><span>dbt</span><span>BigQuery SQL</span><span>Python</span><span>Incremental models</span><span>Data tests</span><span>GitHub Actions</span></div>
+              <div class="project-links">
+                <a href="walletflow.html">Explore case study →</a>
+                <a href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">View repository ↗</a>
+              </div>
+            </div>
+            <div class="project-preview" aria-label="WalletFlow metric preview">
+              <div class="preview-head"><span>WALLETFLOW / KPI SNAPSHOT</span><span>JAN TO JUN 2026</span></div>
+              <div class="preview-kpis">
+                <div><span>GTV</span><strong>₦145.85M</strong></div>
+                <div><span>Success rate</span><strong>88.42%</strong></div>
+                <div><span>June MAU</span><strong>238</strong></div>
+                <div><span>June retention</span><strong>95.06%</strong></div>
+              </div>
+              <div class="pipeline-preview"><span>Sources</span><i>→</i><span>Staging</span><i>→</i><span>Core</span><i>→</i><span>Marts</span></div>
+              <p class="preview-note">5,000 synthetic transactions · 250 customers · tested reporting layer</p>
+            </div>
+          </article>
+
+          <article class="featured-project reveal">
+            <div class="featured-project-copy">
+              <div class="project-topline"><span class="project-number">02</span><span class="badge">SYNTHETIC HEALTHCARE</span></div>
+              <p class="project-kicker">HEALTHCARE OPERATIONS ANALYTICS</p>
+              <h3>CareFlow Health Analytics</h3>
+              <p>A healthcare operations model covering appointments, encounters, admissions, patient flow, readmissions and facility capacity. It separates related events by grain and keeps operational metric logic inside tested dbt models.</p>
+              <div class="decision-strip">
+                <div><span>KEY DECISION</span><strong>Appointments and encounters modelled separately</strong></div>
+                <div><span>REPORTING</span><strong>Wait time · LOS · Readmissions · Occupancy</strong></div>
+              </div>
+              <div class="tags"><span>dbt</span><span>BigQuery SQL</span><span>Python</span><span>Healthcare analytics</span><span>Data tests</span></div>
+              <div class="project-links">
+                <a href="careflow.html">Explore case study →</a>
+                <a href="https://github.com/Fuddie/careflow-health-analytics" target="_blank" rel="noreferrer">View repository ↗</a>
+              </div>
+            </div>
+            <div class="project-preview" aria-label="CareFlow metric preview">
+              <div class="preview-head"><span>CAREFLOW / KPI SNAPSHOT</span><span>JAN TO JUN 2026</span></div>
+              <div class="preview-kpis">
+                <div><span>Appointments</span><strong>2,500</strong></div>
+                <div><span>No-show rate</span><strong>13.16%</strong></div>
+                <div><span>Avg wait</span><strong>44.15m</strong></div>
+                <div><span>30d readmission</span><strong>22.18%</strong></div>
+              </div>
+              <div class="pipeline-preview"><span>Events</span><i>→</i><span>Staging</span><i>→</i><span>Facts</span><i>→</i><span>Marts</span></div>
+              <p class="preview-note">400 patients · 1,818 encounters · 309 admissions · 5 facilities</p>
+            </div>
+          </article>
+
+          <article class="featured-project reveal">
+            <div class="featured-project-copy">
+              <div class="project-topline"><span class="project-number">03</span><span class="badge">PUBLIC E-COMMERCE</span></div>
+              <p class="project-kicker">SNOWFLAKE AND dbt CLOUD PIPELINE</p>
+              <h3>Olist Analytics</h3>
+              <p>A production-oriented Snowflake and dbt Cloud pipeline using public e-commerce data. It includes layered models, two transactional fact grains, ingestion-based incremental MERGE processing, automated tests, pull-request CI and scheduled production orchestration.</p>
+              <div class="decision-strip">
+                <div><span>KEY DECISION</span><strong>Separate order and order-item fact grains</strong></div>
+                <div><span>OPERATIONS</span><strong>DEV/PROD isolation · 12h schedule · CI</strong></div>
+              </div>
+              <div class="tags"><span>Snowflake</span><span>dbt Cloud</span><span>SQL</span><span>Incremental MERGE</span><span>Dimensional modelling</span><span>GitHub Actions</span></div>
+              <div class="project-links">
+                <a href="olist.html">Explore case study →</a>
+                <a href="https://github.com/Fuddie/olist-analytics" target="_blank" rel="noreferrer">View repository ↗</a>
+              </div>
+            </div>
+            <div class="project-preview" aria-label="Olist Analytics project preview">
+              <div class="preview-head"><span>OLIST / PIPELINE SNAPSHOT</span><span>SNOWFLAKE</span></div>
+              <div class="preview-kpis">
+                <div><span>Orders</span><strong>99,441</strong></div>
+                <div><span>Order items</span><strong>112,650</strong></div>
+                <div><span>Raw sources</span><strong>9</strong></div>
+                <div><span>Schedule</span><strong>12h</strong></div>
+              </div>
+              <div class="pipeline-preview"><span>Raw</span><i>→</i><span>Staging</span><i>→</i><span>Core</span><i>→</i><span>Prod</span></div>
+              <p class="preview-note">Snowflake · dbt Cloud · RSA authentication · production orchestration</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="supporting-work reveal">
+          <div class="supporting-heading">
+            <p class="eyebrow">OTHER ANALYSIS WORK</p>
+            <h3>Additional projects</h3>
+          </div>
+          <div class="supporting-grid">
+            <article class="project-card">
+              <div class="project-topline"><span class="project-number">04</span><span class="badge muted">LENDING ANALYSIS</span></div>
+              <h3>Prosper Loan Exploration</h3>
+              <p>Exploratory analysis of 113,937 US loan records and 81 variables, focused on borrower characteristics, loan performance and relationships between lending variables.</p>
+              <div class="tags"><span>Python</span><span>EDA</span><span>Data cleaning</span><span>Visualisation</span></div>
+              <div class="project-links"><a href="https://github.com/Fuddie/prosperloan" target="_blank" rel="noreferrer">View repository ↗</a></div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-topline"><span class="project-number">05</span><span class="badge muted">PREDICTIVE ANALYTICS</span></div>
+              <h3>Customer Churn Prediction</h3>
+              <p>Telecom churn modelling comparing Logistic Regression, Decision Tree and Support Vector Machines. The retained Logistic Regression model achieved an AUC of 0.8387.</p>
+              <div class="tags"><span>Python</span><span>Machine learning</span><span>Classification</span><span>ROC-AUC</span></div>
+              <div class="project-links"><a href="https://github.com/Fuddie/Churn-prediction-project" target="_blank" rel="noreferrer">View repository ↗</a></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="about" class="section container split-section">
       <div class="section-heading reveal">
-        <p class="eyebrow">01 / ABOUT</p>
+        <p class="eyebrow">02 / ABOUT</p>
         <h2>Making data easier to trust, understand and use.</h2>
       </div>
       <div class="section-copy reveal">
@@ -80,7 +204,7 @@
 
     <section id="experience" class="section container">
       <div class="section-heading reveal">
-        <p class="eyebrow">02 / EXPERIENCE</p>
+        <p class="eyebrow">03 / EXPERIENCE</p>
         <h2>Experience across analytics engineering, reporting and data quality.</h2>
       </div>
 
@@ -139,66 +263,6 @@
             </ul>
           </div>
         </article>
-      </div>
-    </section>
-
-    <section id="projects" class="section projects-section">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">03 / PROJECTS</p>
-          <h2>Selected data projects.</h2>
-          <p class="section-intro">Personal projects use public or synthetic data and are separate from employer work.</p>
-        </div>
-
-        <div class="project-grid">
-          <article class="project-card featured reveal">
-            <div class="project-topline"><span class="project-number">01</span><span class="badge">SYNTHETIC FINTECH</span></div>
-            <h3>WalletFlow Analytics</h3>
-            <p>A digital-wallet analytics engineering project using dbt and BigQuery SQL. It includes layered models, incremental processing, late-arriving transaction handling, data tests, DAU/MAU metrics, month-over-month retention and cohort retention.</p>
-            <div class="project-stats">
-              <span><strong>5,000</strong> transactions</span>
-              <span><strong>250</strong> customers</span>
-              <span><strong>4</strong> reporting marts</span>
-            </div>
-            <div class="tags"><span>dbt</span><span>BigQuery SQL</span><span>Python</span><span>Incremental models</span><span>Data tests</span></div>
-            <div class="project-links">
-              <a href="walletflow.html">Project details →</a>
-              <a href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">Repository ↗</a>
-            </div>
-          </article>
-
-          <article class="project-card featured reveal">
-            <div class="project-topline"><span class="project-number">02</span><span class="badge">SYNTHETIC HEALTHCARE</span></div>
-            <h3>CareFlow Health Analytics</h3>
-            <p>A healthcare operations analytics engineering project covering appointments, patient encounters, inpatient admissions, readmissions, facility capacity and patient return metrics.</p>
-            <div class="project-stats">
-              <span><strong>2,500</strong> appointments</span>
-              <span><strong>1,818</strong> encounters</span>
-              <span><strong>5</strong> reporting marts</span>
-            </div>
-            <div class="tags"><span>dbt</span><span>BigQuery SQL</span><span>Python</span><span>Healthcare analytics</span><span>Data tests</span></div>
-            <div class="project-links">
-              <a href="careflow.html">Project details →</a>
-              <a href="https://github.com/Fuddie/careflow-health-analytics" target="_blank" rel="noreferrer">Repository ↗</a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-topline"><span class="project-number">03</span><span class="badge muted">LENDING ANALYSIS</span></div>
-            <h3>Prosper Loan Exploration</h3>
-            <p>Exploratory analysis of a US lending dataset containing 113,937 loan records and 81 variables, with focus on borrower characteristics, loan performance and relationships between lending variables.</p>
-            <div class="tags"><span>Python</span><span>EDA</span><span>Data cleaning</span><span>Visualisation</span></div>
-            <div class="project-links"><a href="https://github.com/Fuddie/prosperloan" target="_blank" rel="noreferrer">Repository ↗</a></div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-topline"><span class="project-number">04</span><span class="badge muted">PREDICTIVE ANALYTICS</span></div>
-            <h3>Customer Churn Prediction</h3>
-            <p>Telecom churn modelling project comparing Logistic Regression, Decision Tree and Support Vector Machines. The retained Logistic Regression model achieved an AUC of 0.8387.</p>
-            <div class="tags"><span>Python</span><span>Machine learning</span><span>Classification</span><span>ROC-AUC</span></div>
-            <div class="project-links"><a href="https://github.com/Fuddie/Churn-prediction-project" target="_blank" rel="noreferrer">Repository ↗</a></div>
-          </article>
-        </div>
       </div>
     </section>
 
