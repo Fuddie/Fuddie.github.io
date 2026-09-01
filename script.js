@@ -15,6 +15,24 @@ if (menuToggle && navLinks) {
   });
 }
 
+const heroActions = document.querySelector('.hero .hero-actions');
+if (heroActions && !heroActions.querySelector('[data-resume-link]')) {
+  const resumeLink = document.createElement('a');
+  resumeLink.className = 'button secondary';
+  resumeLink.href = 'resume.html';
+  resumeLink.dataset.resumeLink = 'true';
+  resumeLink.textContent = 'View CV';
+  heroActions.appendChild(resumeLink);
+}
+
+if (navLinks && !navLinks.querySelector('[data-resume-nav]')) {
+  const resumeNav = document.createElement('a');
+  resumeNav.href = 'resume.html';
+  resumeNav.dataset.resumeNav = 'true';
+  resumeNav.textContent = 'CV';
+  navLinks.appendChild(resumeNav);
+}
+
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
