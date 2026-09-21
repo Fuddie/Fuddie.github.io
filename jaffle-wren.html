@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="How I modelled orders, customers and payments in Wren AI over a dbt-built DuckDB warehouse, then reconciled metrics using the Jaffle Shop sample dataset." />
+  <meta property="og:title" content="Jaffle Shop Wren AI | Fuad Adebisi" />
+  <meta property="og:description" content="Order-grain metrics, explicit AUD definitions and reconciled sample-data results with dbt, DuckDB and Wren AI." />
+  <meta property="og:type" content="website" />
+  <title>Jaffle Shop Wren AI | Fuad Adebisi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top" class="jaffle-case">
+  <a class="jaffle-skip" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="brand" href="index.html">FA<span>.</span></a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="case-navigation">☰</button>
+      <div class="nav-links" id="case-navigation">
+        <a href="index.html#projects">Projects</a>
+        <a href="#architecture">Architecture</a>
+        <a href="https://github.com/Fuddie/jaffle-shop-wren-ai" target="_blank" rel="noreferrer">Repository ↗</a>
+        <a href="mailto:fuddiebiola@gmail.com">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="container jaffle-hero">
+      <nav class="jaffle-breadcrumb" aria-label="Breadcrumb"><a href="index.html#projects">Portfolio projects</a><span aria-hidden="true">/</span><span>Jaffle Shop Wren AI</span></nav>
+      <div class="jaffle-hero-grid">
+        <div>
+          <p class="eyebrow">ANALYTICS ENGINEERING / SEMANTIC MODELLING</p>
+          <h1>Jaffle Shop <span>Wren AI</span></h1>
+          <p class="hero-text">Reliable order reporting starts with the right joins and financial definitions. I built a Wren semantic layer over a dbt-built DuckDB warehouse, defined metrics at order grain and reconciled AUD 1,672 in total order amount against payments.</p>
+          <p class="jaffle-note">Independent portfolio work using the Jaffle Shop sample dataset. I validated semantic SQL and cube queries locally. A chat interface and automated natural-language evaluation remain future work.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://github.com/Fuddie/jaffle-shop-wren-ai" target="_blank" rel="noreferrer">View GitHub repository ↗</a>
+            <a class="button secondary" href="#results">Validated results</a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Project at a glance">
+          <div class="code-label">JAFFLE SHOP / PROJECT AT A GLANCE</div>
+          <div class="profile-panel">
+            <div class="profile-row"><span>TRANSFORM</span><strong>dbt</strong></div>
+            <div class="profile-row"><span>WAREHOUSE</span><strong>DuckDB</strong></div>
+            <div class="profile-row"><span>SEMANTICS</span><strong>Wren AI</strong></div>
+            <div class="profile-row"><span>MODELS</span><strong>Customers · Orders · Payments</strong></div>
+            <div class="profile-row"><span>OUTPUT</span><strong>Metrics cube + monthly view</strong></div>
+            <div class="profile-row"><span>MY WORK</span><strong>Semantic modelling + validation</strong></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section container split-section">
+      <div class="section-heading"><p class="eyebrow">01 / BUSINESS PROBLEM</p><h2>Business questions need consistent definitions.</h2></div>
+      <div class="section-copy">
+        <p>“How much did customers spend?” depends on currency, order status and the grain of the data. Joining an order to multiple payments can inflate its amount. Converting values that are already in AUD a second time can understate them.</p>
+        <p>I made the reporting rules explicit in three semantic models, two relationships and an order metrics cube. I kept order measures at one row per order and documented which statuses and payment methods contribute to each amount. The definitions support questions such as:</p>
+        <ul><li>How many customers placed orders?</li><li>What is average order value by month or status?</li><li>How is payment amount distributed across payment methods?</li></ul>
+        <p>I checked the answers through semantic SQL, the metrics cube and a monthly summary view. The validated outcome is agreement between those query paths and the recorded source totals.</p>
+      </div>
+    </section>
+
+    <section id="architecture" class="section container">
+      <div class="section-heading"><p class="eyebrow">02 / ARCHITECTURE</p><h2>From dbt models to checked query results.</h2></div>
+      <p class="section-intro">I mapped the existing warehouse objects into Wren, then queried the semantic layer to verify the metric definitions.</p>
+      <ol class="jaffle-pipeline">
+        <li><p class="eyebrow">01 / TRANSFORM</p><h3>dbt</h3><p>Upstream seeds, staging and marts prepare customer, order and payment data.</p></li>
+        <li><p class="eyebrow">02 / STORE</p><h3>DuckDB</h3><p>The local warehouse stores customer and order marts and the staged payments view.</p></li>
+        <li><p class="eyebrow">03 / DEFINE</p><h3>Wren semantic layer</h3><p>I defined model grains, joins, an order metrics cube and a monthly summary view.</p></li>
+        <li><p class="eyebrow">04 / CHECK</p><h3>SQL + cube queries</h3><p>I compared monthly results and reconciled order amounts against payments.</p></li>
+      </ol>
+      <p class="jaffle-note">Repository scope: the Wren layer. Reproduction requires a separately supplied upstream dbt project and matching DuckDB database.</p>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading"><p class="eyebrow">03 / SEMANTIC MODELS</p><h2>Keep customer, order and payment grains explicit.</h2></div>
+      <div class="jaffle-model-grid">
+        <article class="skill-card"><h3>customers</h3><p>One row per customer, including customers without orders. Exposes lifetime order count and recorded payment value.</p><code>jaffle_shop.main.customers</code></article>
+        <article class="skill-card"><h3>orders</h3><p>One row per order, with customer, date, status, total amount and amounts by payment method.</p><code>jaffle_shop.main.orders</code></article>
+        <article class="skill-card"><h3>payments</h3><p>One row per payment. Staging has already converted raw cents into AUD.</p><code>jaffle_shop.main.stg_payments</code></article>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card"><h3>Customers → orders</h3><p>One customer can have zero or many orders. Each order references one customer through the declared many-to-one join:</p><code>orders.customer_id = customers.customer_id</code></article>
+        <article class="skill-card"><h3>Payments → orders</h3><p>Many payments can belong to one order. Each payment references one order through:</p><code>payments.order_id = orders.order_id</code></article>
+      </div>
+      <p class="jaffle-note">Semantic keys describe expectations checked against the data. DuckDB reported no physical key constraints.</p>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading"><p class="eyebrow">04 / METRIC DECISIONS</p><h2>Define what each amount actually measures.</h2></div>
+      <p class="section-intro">I based the <code>order_metrics</code> cube on orders, with order-date and status dimensions. I exposed the same five measures by month in <code>monthly_order_summary</code> so I could compare both query paths.</p>
+      <div class="jaffle-table-wrap" role="region" aria-label="Governed metric definitions" tabindex="0">
+        <table class="jaffle-table">
+          <caption>Order-grain metric definitions</caption>
+          <thead><tr><th scope="col">Metric</th><th scope="col">Definition</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Order count</th><td><code>COUNT(*)</code> over orders in scope.</td></tr>
+            <tr><th scope="row">Purchasing customers</th><td><code>COUNT(DISTINCT customer_id)</code>; distinct customers who ordered in scope.</td></tr>
+            <tr><th scope="row">Total order amount</th><td><code>SUM(amount)</code> in AUD across all statuses and payment methods.</td></tr>
+            <tr><th scope="row">Average order value</th><td><code>AVG(amount)</code> over orders with non-null amounts.</td></tr>
+            <tr><th scope="row">Completed-order amount</th><td>Sum of order amounts where <code>status = 'completed'</code>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card"><h3>Currency and financial meaning</h3><ul><li>Amounts are already in AUD; do not divide them by 100 again.</li><li>Total order amount includes coupons, gift cards and returned-order statuses.</li><li>No explicit refund transactions are modelled. Total order amount is not net or refund-adjusted revenue.</li></ul></article>
+        <article class="skill-card"><h3>Aggregation and join rules</h3><ul><li>Aggregate payments per order before joining to order-level measures.</li><li>Deduplicate purchasing customers over the full selected scope; monthly distinct counts are not additive.</li><li>Calculate overall average order value from orders, rather than averaging monthly averages.</li></ul></article>
+      </div>
+    </section>
+
+    <section id="results" class="section container">
+      <div class="section-heading"><p class="eyebrow">05 / VALIDATED RESULTS</p><h2>A reconciled sample-data snapshot.</h2></div>
+      <div class="project-preview">
+        <div class="preview-head"><span>JAFFLE SHOP / VALIDATED RESULTS</span><span>JANUARY–APRIL 2018 SAMPLE</span></div>
+        <div class="preview-kpis jaffle-results">
+          <div><span>Customers</span><strong>100</strong></div>
+          <div><span>Orders</span><strong>99</strong></div>
+          <div><span>Payments</span><strong>113</strong></div>
+          <div><span>Total order amount</span><strong>AUD 1,672</strong></div>
+          <div><span>Purchasing customers</span><strong>62</strong></div>
+          <div><span>Average order value</span><strong>AUD 16.89</strong></div>
+        </div>
+        <p class="preview-note">I checked that the monthly view and metrics cube returned matching order counts, total amounts and average order values. These results describe the sample dataset; the months may be incomplete. AUD 1,672 is total order amount, not net revenue.</p>
+      </div>
+      <p class="section-intro">Source: <a class="jaffle-source" href="https://github.com/Fuddie/jaffle-shop-wren-ai/blob/main/README.md#validated-results-from-the-first-query-workflow" target="_blank" rel="noreferrer">repository validation results ↗</a>.</p>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading"><p class="eyebrow">06 / DATA QUALITY</p><h2>Check the model against the data.</h2></div>
+      <div class="skills-grid">
+        <article class="skill-card"><h3>Strict validation and compilation</h3><p><code>wren context validate --strict</code> passed for three models, one view and two relationships. Context compilation successfully generated <code>target/mdl.json</code>.</p><p>The semantic layer uses physical objects in <code>jaffle_shop.main</code> while Wren's internal namespace remains <code>wren.public</code>.</p></article>
+        <article class="skill-card"><h3>Keys and relationships</h3><ul><li>Customer, order and payment keys were unique and non-null.</li><li>No orders lacked a matching customer.</li><li>No payments lacked a matching order.</li><li>No order amounts were missing.</li></ul></article>
+        <article class="skill-card"><h3>Reconciliation checks</h3><ul><li>Order amounts matched summed payments on matched orders within a tolerance of <code>0.000001</code>.</li><li>Customer lifetime aggregates matched AUD 1,672 and 99 orders.</li><li>The monthly view and cube agreed on counts, amounts and averages.</li></ul></article>
+        <article class="skill-card"><h3>Validation scope</h3><p>I ran the data-quality queries manually through Wren and reconciled customer lifetime totals at aggregate level. I inspected upstream dbt tests for modelling context but did not run a fresh dbt test suite in this workflow.</p><p>My next checks would automate these assertions and reconcile lifetime measures for each customer.</p></article>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading"><p class="eyebrow">07 / TECHNICAL CHALLENGES</p><h2>Make the local Windows workflow reliable.</h2></div>
+      <div class="skills-grid">
+        <article class="skill-card"><h3>Windows path handling</h3><p>An extra slash before the drive prefix prevented Wren from resolving the database directory. I resolved the actual directory and normalised its separators. The connection URL needed the directory containing the DuckDB database.</p></article>
+        <article class="skill-card"><h3>UTF-8 encoding</h3><p>The CLI raised a <code>UnicodeEncodeError</code> under the default Windows output encoding. I set <code>PYTHONIOENCODING=utf-8</code> for the session and wrote the connection JSON as UTF-8 without a byte-order mark to avoid JSON parsing issues.</p></article>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading"><p class="eyebrow">08 / CODE AND NEXT STEPS</p><h2>Review the definitions and validation workflow.</h2></div>
+      <div class="tags"><span>dbt Core</span><span>dbt-duckdb</span><span>DuckDB</span><span>Wren AI CLI</span><span>Python</span><span>SQL</span><span>YAML</span><span>PowerShell</span></div>
+      <p class="section-intro">The repository documents the models, metric definitions, business rules and commands behind these results. My next priorities are automated reconciliation checks, a pinned upstream dataset and evaluation of natural-language questions against expected answers.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="https://github.com/Fuddie/jaffle-shop-wren-ai" target="_blank" rel="noreferrer">View GitHub repository ↗</a>
+        <a class="button secondary" href="index.html#projects">← Back to projects</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer container"><p>Jaffle Shop Wren AI · Fuad Abiola Adebisi</p><a href="#top">Back to top ↑</a></footer>
+  <script src="script.js"></script>
+</body>
+</html>

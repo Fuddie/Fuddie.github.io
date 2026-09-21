@@ -92,7 +92,7 @@
                 <a href="https://github.com/Fuddie/walletflow-analytics" target="_blank" rel="noreferrer">View repository ↗</a>
               </div>
             </div>
-            <div class="project-preview" aria-label="WalletFlow metric preview">
+            <div class="project-preview" role="group" aria-label="WalletFlow metric preview">
               <div class="preview-head"><span>WALLETFLOW / KPI SNAPSHOT</span><span>JAN TO JUN 2026</span></div>
               <div class="preview-kpis">
                 <div><span>GTV</span><strong>₦145.85M</strong></div>
@@ -121,7 +121,7 @@
                 <a href="https://github.com/Fuddie/careflow-health-analytics" target="_blank" rel="noreferrer">View repository ↗</a>
               </div>
             </div>
-            <div class="project-preview" aria-label="CareFlow metric preview">
+            <div class="project-preview" role="group" aria-label="CareFlow metric preview">
               <div class="preview-head"><span>CAREFLOW / KPI SNAPSHOT</span><span>JAN TO JUN 2026</span></div>
               <div class="preview-kpis">
                 <div><span>Appointments</span><strong>2,500</strong></div>
@@ -150,7 +150,7 @@
                 <a href="https://github.com/Fuddie/olist-analytics" target="_blank" rel="noreferrer">View repository ↗</a>
               </div>
             </div>
-            <div class="project-preview" aria-label="Olist Analytics project preview">
+            <div class="project-preview" role="group" aria-label="Olist Analytics project preview">
               <div class="preview-head"><span>OLIST / PIPELINE SNAPSHOT</span><span>SNOWFLAKE</span></div>
               <div class="preview-kpis">
                 <div><span>Orders</span><strong>99,441</strong></div>
@@ -162,6 +162,35 @@
               <p class="preview-note">Snowflake · dbt Cloud · RSA authentication · production orchestration</p>
             </div>
           </article>
+
+          <article class="featured-project reveal">
+            <div class="featured-project-copy">
+              <div class="project-topline"><span class="project-number">04</span><span class="badge">SEMANTIC MODELLING</span></div>
+              <p class="project-kicker">SEMANTIC LAYER FOR BUSINESS ANALYTICS</p>
+              <h3>Jaffle Shop Wren AI</h3>
+              <p>Order totals can change when payment joins duplicate rows or currency is converted twice. Using the Jaffle Shop sample dataset, I built a Wren semantic layer over a dbt-built DuckDB warehouse to make those rules explicit. I reconciled order and payment amounts and checked that the monthly view and metrics cube agreed.</p>
+              <div class="decision-strip">
+                <div><span>KEY DECISIONS</span><strong>Order-grain metrics · AUD definitions</strong></div>
+                <div><span>VALIDATION</span><strong>Key checks · Payment reconciliation</strong></div>
+              </div>
+              <div class="tags"><span>dbt</span><span>DuckDB</span><span>Wren AI</span><span>SQL</span><span>Semantic modelling</span></div>
+              <div class="project-links">
+                <a href="jaffle-wren.html">Explore case study →</a>
+                <a href="https://github.com/Fuddie/jaffle-shop-wren-ai" target="_blank" rel="noreferrer">View repository ↗</a>
+              </div>
+            </div>
+            <div class="project-preview" role="group" aria-label="Jaffle Shop validated metric preview">
+              <div class="preview-head"><span>JAFFLE SHOP / VALIDATED SNAPSHOT</span><span>SAMPLE DATA</span></div>
+              <div class="preview-kpis">
+                <div><span>Customers</span><strong>100</strong></div>
+                <div><span>Orders</span><strong>99</strong></div>
+                <div><span>Payments</span><strong>113</strong></div>
+                <div><span>Total order amount</span><strong>AUD 1,672</strong></div>
+              </div>
+              <div class="pipeline-preview"><span>dbt</span><i aria-hidden="true">→</i><span>DuckDB</span><i aria-hidden="true">→</i><span>Wren</span><i aria-hidden="true">→</i><span>Analytics</span></div>
+              <p class="preview-note">Recorded sample-data totals across all order statuses. Total order amount includes coupons and gift cards; it is not net revenue.</p>
+            </div>
+          </article>
         </div>
 
         <div class="supporting-work reveal">
@@ -171,7 +200,7 @@
           </div>
           <div class="supporting-grid">
             <article class="project-card">
-              <div class="project-topline"><span class="project-number">04</span><span class="badge muted">LENDING ANALYSIS</span></div>
+              <div class="project-topline"><span class="project-number">05</span><span class="badge muted">LENDING ANALYSIS</span></div>
               <h3>Prosper Loan Exploration</h3>
               <p>Exploratory analysis of 113,937 US loan records and 81 variables, focused on borrower characteristics, loan performance and relationships between lending variables.</p>
               <div class="tags"><span>Python</span><span>EDA</span><span>Data cleaning</span><span>Visualisation</span></div>
@@ -179,7 +208,7 @@
             </article>
 
             <article class="project-card">
-              <div class="project-topline"><span class="project-number">05</span><span class="badge muted">PREDICTIVE ANALYTICS</span></div>
+              <div class="project-topline"><span class="project-number">06</span><span class="badge muted">PREDICTIVE ANALYTICS</span></div>
               <h3>Customer Churn Prediction</h3>
               <p>Telecom churn modelling comparing Logistic Regression, Decision Tree and Support Vector Machines. The retained Logistic Regression model achieved an AUC of 0.8387.</p>
               <div class="tags"><span>Python</span><span>Machine learning</span><span>Classification</span><span>ROC-AUC</span></div>
