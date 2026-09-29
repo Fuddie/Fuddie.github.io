@@ -48,4 +48,4 @@ Case study: `olist.html`
 
 Email: fuddiebiola@gmail.com  
 GitHub: https://github.com/Fuddie  
-LinkedIn: https://www.linkedin.com/in/FuadAdebisi
+LinkedIn: https://www.linkedin.com/in/fuad-adebisi/

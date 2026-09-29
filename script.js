@@ -38,7 +38,7 @@ const contactActions = document.querySelector('#contact .hero-actions');
 if (contactActions && !contactActions.querySelector('[data-linkedin-contact]')) {
   const linkedIn = document.createElement('a');
   linkedIn.className = 'button secondary';
-  linkedIn.href = 'https://www.linkedin.com/in/FuadAdebisi';
+  linkedIn.href = 'https://www.linkedin.com/in/fuad-adebisi/';
   linkedIn.target = '_blank';
   linkedIn.rel = 'noreferrer';
   linkedIn.dataset.linkedinContact = 'true';
