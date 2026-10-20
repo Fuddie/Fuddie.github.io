@@ -10,6 +10,11 @@
   --max: 1160px;
 }
 
+/* Fab ENT reuses the shared portfolio and case-study components. */
+.fab-case .skill-card p { color: var(--muted); }
+.fab-project .button { font-size: .9rem; }
+.fab-case .hero-actions .button { min-height: 44px; }
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {

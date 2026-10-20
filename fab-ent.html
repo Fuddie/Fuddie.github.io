@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fab ENT Marketing Intelligence: seven synthetic UK fashion datasets transformed with dbt and DuckDB, governed through Wren AI and delivered in a browser dashboard." />
+  <meta property="og:title" content="Fab ENT Marketing Intelligence | Fuad Adebisi" />
+  <meta property="og:description" content="Governed attribution, monthly campaign analytics and validated browser reporting on a fixed synthetic 2025 dataset." />
+  <meta property="og:type" content="website" />
+  <title>Fab ENT Marketing Intelligence | Fuad Adebisi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="jaffle-case fab-case">
+  <a class="jaffle-skip" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="brand" href="index.html" aria-label="Fuad Adebisi home">FA<span>.</span></a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="case-navigation">☰</button>
+      <div class="nav-links" id="case-navigation">
+        <a href="index.html#projects">Projects</a><a href="#architecture">Architecture</a><a href="#validation">Validation</a><a href="#demo">Demo access</a>
+      </div>
+    </nav>
+  </header>
+  <main id="main-content" tabindex="-1">
+    <section class="container jaffle-hero">
+      <nav class="jaffle-breadcrumb" aria-label="Breadcrumb"><a href="index.html#projects">Portfolio projects</a><span aria-hidden="true">/</span><span aria-current="page">Fab ENT</span></nav>
+      <p class="eyebrow">COMPLETED PROJECT / MARKETING INTELLIGENCE</p>
+      <h1>Fab ENT <span>Marketing Intelligence</span></h1>
+      <p class="hero-text">Seven source datasets, governed marketing metrics and an interactive browser dashboard for a fictional UK direct-to-consumer fashion business.</p>
+      <p class="jaffle-note">Independent portfolio work using a fixed synthetic 2025 dataset in GBP. The results demonstrate engineering and validation; they do not represent measured commercial impact or a live production data feed.</p>
+      <div class="tags"><span>SQL</span><span>dbt</span><span>DuckDB</span><span>Wren AI</span><span>Python</span><span>JavaScript</span></div>
+      <div class="hero-actions">
+        <a class="button primary" href="https://fuddie.github.io/fab-ent-marketing-intelligence/" target="_blank" rel="noopener noreferrer">Live dashboard ↗</a>
+        <a class="button secondary" href="https://github.com/Fuddie/fab-ent-marketing-intelligence" target="_blank" rel="noopener noreferrer">Source code ↗</a>
+      </div>
+    </section>
+    <section class="section container split-section">
+      <div class="section-heading"><p class="eyebrow">01 / BUSINESS QUESTION</p><h2>Connect marketing spend to consistently defined outcomes.</h2></div>
+      <div class="section-copy"><p>The project connects campaign spend, website activity and customer orders so performance can be explored by month, channel and campaign. The modelling challenge is preserving each source's grain while applying consistent attribution and metric rules across reporting and semantic queries.</p><p>Monthly campaign analytics support comparisons of spend, attributed outcomes and efficiency over the fixed reporting period. Filters, KPI cards, trends and campaign reporting make the models accessible through the browser.</p></div>
+    </section>
+    <section id="architecture" class="section container">
+      <div class="section-heading"><p class="eyebrow">02 / ARCHITECTURE</p><h2>From seven raw sources to governed browser reporting.</h2></div>
+      <ol class="jaffle-pipeline">
+        <li><h3>Seven source datasets</h3><p>Campaigns, ad performance, web sessions, customers, orders, order items and products form the fixed synthetic input.</p></li>
+        <li><h3>dbt + DuckDB</h3><p>Typed seeds, staging, attribution and marketing marts transform the raw records into tested analytics tables.</p></li>
+        <li><h3>Wren AI governance</h3><p>Semantic models define grains, relationships and metrics, with validated read-only queries and reproducible exports.</p></li>
+        <li><h3>Browser dashboard</h3><p>Fixed Parquet snapshots are queried with DuckDB WebAssembly. JavaScript powers interactive reporting without a dashboard backend.</p></li>
+      </ol>
+      <div class="skills-grid">
+        <article class="skill-card"><h3>Governed seven-day last-non-direct attribution</h3><p>Eligible touches are identified paid sessions with a valid campaign in the 168 hours before an order, excluding the order timestamp. The latest eligible touch wins; session ID breaks timestamp ties. Direct and campaignless Organic visits cannot overwrite a qualifying paid touch.</p><p>Unattributed orders remain explicit. The rule does not infer identities or establish a causal marketing effect.</p></article>
+        <article class="skill-card"><h3>Monthly campaign analytics</h3><p>Campaign-by-month reporting supports time-based comparisons alongside channel and overall monthly views. Metric definitions, commercial eligibility and attribution are applied in the governed models.</p><p>Reporting months use Europe/London dates; attribution windows use UTC instants.</p></article>
+      </div>
+    </section>
+    <section id="validation" class="section container">
+      <div class="section-heading"><p class="eyebrow">03 / VALIDATION</p><h2>Evidence at the data, metric and filter levels.</h2></div>
+      <div class="jaffle-model-grid">
+        <article class="skill-card"><p class="eyebrow">387 DBT TESTS</p><h3>Data-quality validation</h3><p>Key and relationship checks, source-to-model reconciliation, monetary arithmetic, attribution boundaries and model-grain checks protect the reporting layer.</p></article>
+        <article class="skill-card"><p class="eyebrow">25,200 FILTER CASES</p><h3>Dashboard query validation</h3><p>Dashboard calculations are compared with independent physical-mart SQL across 12 start months × 12 end months × 7 channel choices × 25 campaign choices. These validate calculations; they are not 25,200 manual browser tests.</p></article>
+        <article class="skill-card"><p class="eyebrow">VERIFIED EXAMPLES</p><h3>Reproducible answers</h3><p>Saved example questions and checked answers demonstrate governed marketing analysis in the public demo. These are fixed examples rather than arbitrary live AI responses.</p></article>
+      </div>
+      <p class="jaffle-note">These are project-reported validation results for the fixed synthetic snapshot and reporting logic. They do not establish production reliability or business uplift.</p>
+    </section>
+    <section id="demo" class="section container">
+      <div class="section-heading"><p class="eyebrow">04 / DEMO ACCESS</p><h2>Explore the public dashboard or run local AI services.</h2></div>
+      <div class="skills-grid">
+        <article class="skill-card"><h3>Public static demo</h3><p>The public demo supports the interactive static dashboard and Verified examples using exported data. Those features need no locally running backend.</p></article>
+        <article class="skill-card"><h3>Optional Ask Marketing AI</h3><p>Arbitrary questions require the documented local services, including Wren and the Python question service, plus local Codex CLI authentication. This optional workflow is not hosted by the public static demo.</p><p>Local AI availability depends on the authenticated environment. Follow the repository setup and validation instructions; public-demo access alone does not enable live AI questions.</p></article>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href="https://fuddie.github.io/fab-ent-marketing-intelligence/" target="_blank" rel="noopener noreferrer">Live dashboard ↗</a>
+        <a class="button secondary" href="https://github.com/Fuddie/fab-ent-marketing-intelligence" target="_blank" rel="noopener noreferrer">Source code ↗</a>
+        <a class="button secondary" href="https://github.com/Fuddie/fab-ent-marketing-intelligence#phase-7-ask-marketing-ai" target="_blank" rel="noopener noreferrer">Local AI setup ↗</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer container"><span>Fuad Abiola Adebisi · Analytics Engineer</span><a href="index.html#projects">Back to projects →</a></footer>
+  <script src="script.js"></script>
+</body>
+</html>
