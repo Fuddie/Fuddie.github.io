@@ -73,7 +73,7 @@
         <div class="section-heading reveal project-heading">
           <p class="eyebrow">01 / FEATURED WORK</p>
           <h2>Analytics engineering projects built around real modelling decisions.</h2>
-          <p class="section-intro">Each project starts with operational data and ends with tested, reporting-ready models. Personal projects use public or synthetic data and are separate from employer work.</p>
+          <p class="section-intro">Projects cover tested reporting models and small operational integrations. Personal projects use public or fictional data and are separate from employer work.</p>
         </div>
 
         <div class="featured-work">
@@ -224,6 +224,36 @@
               <p class="preview-note">Recorded sample-data totals across all order statuses. Total order amount includes coupons and gift cards; it is not net revenue.</p>
             </div>
           </article>
+
+          <article class="featured-project reveal" aria-labelledby="thrift-project-title">
+            <div class="featured-project-copy">
+              <div class="project-topline"><span class="project-number">05</span><span class="badge">BUSINESS WORKFLOW DEMO</span></div>
+              <p class="project-kicker">POSTGRESQL ORDER CAPTURE AND VERIFICATION</p>
+              <h3 id="thrift-project-title">Thrift Nest Order Capture</h3>
+              <p>For a friend's thrift business, I built a Chord assistant that looks up products and records unpaid purchase requests in PostgreSQL. The work centres on clear record definitions, duplicate protection and checking that a claimed save actually exists in the database.</p>
+              <div class="decision-strip">
+                <div><span>DATA DESIGN</span><strong>Catalogue prices · Unique customer and item requests</strong></div>
+                <div><span>VERIFICATION</span><strong>API logs · Independent SQL checks</strong></div>
+              </div>
+              <div class="tags"><span>PostgreSQL</span><span>SQL</span><span>Supabase</span><span>JavaScript</span><span>Cloudflare Workers</span><span>Chord</span></div>
+              <div class="project-links">
+                <a href="thrift-nest.html">Explore case study →</a>
+                <a href="https://www.loom.com/share/fb9b9580a6564d639bbef2b03889834c" target="_blank" rel="noopener noreferrer">Watch demo ↗</a>
+                <a href="https://github.com/Fuddie/thrift-nest-chord" target="_blank" rel="noopener noreferrer">View repository ↗</a>
+              </div>
+            </div>
+            <div class="project-preview" role="group" aria-label="Thrift Nest engineering checks">
+              <div class="preview-head"><span>THRIFT NEST / BUILD SNAPSHOT</span><span>FICTIONAL OPERATIONAL DATA</span></div>
+              <div class="preview-kpis">
+                <div><span>Database tables</span><strong>2</strong></div>
+                <div><span>API operations</span><strong>3</strong></div>
+                <div><span>Local tests passed</span><strong>20</strong></div>
+                <div><span>Record verification</span><strong>SQL</strong></div>
+              </div>
+              <div class="pipeline-preview"><span>Chord</span><i aria-hidden="true">→</i><span>Worker API</span><i aria-hidden="true">→</i><span>PostgreSQL</span></div>
+              <p class="preview-note">Real business context, fictional products and customer references. Local tests cover the earlier SQLite service and the current HTTP adapter; hosted checks are documented separately. No measured sales or time-saving claim.</p>
+            </div>
+          </article>
         </div>
 
         <div class="supporting-work reveal">
@@ -233,7 +263,7 @@
           </div>
           <div class="supporting-grid">
             <article class="project-card">
-              <div class="project-topline"><span class="project-number">05</span><span class="badge muted">LENDING ANALYSIS</span></div>
+              <div class="project-topline"><span class="project-number">06</span><span class="badge muted">LENDING ANALYSIS</span></div>
               <h3>Prosper Loan Exploration</h3>
               <p>Exploratory analysis of 113,937 US loan records and 81 variables, focused on borrower characteristics, loan performance and relationships between lending variables.</p>
               <div class="tags"><span>Python</span><span>EDA</span><span>Data cleaning</span><span>Visualisation</span></div>
@@ -241,7 +271,7 @@
             </article>
 
             <article class="project-card">
-              <div class="project-topline"><span class="project-number">06</span><span class="badge muted">PREDICTIVE ANALYTICS</span></div>
+              <div class="project-topline"><span class="project-number">07</span><span class="badge muted">PREDICTIVE ANALYTICS</span></div>
               <h3>Customer Churn Prediction</h3>
               <p>Telecom churn modelling comparing Logistic Regression, Decision Tree and Support Vector Machines. The retained Logistic Regression model achieved an AUC of 0.8387.</p>
               <div class="tags"><span>Python</span><span>Machine learning</span><span>Classification</span><span>ROC-AUC</span></div>

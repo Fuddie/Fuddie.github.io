@@ -37,6 +37,15 @@ Repository: https://github.com/Fuddie/olist-analytics
 
 Case study: `olist.html`
 
+### Thrift Nest Order Capture
+A Chord assistant demo for a friend's thrift business, with PostgreSQL record design, duplicate protection, an HTTP API and independent SQL verification. Uses fictional operational data. No measured sales or time-saving claim.
+
+Repository: https://github.com/Fuddie/thrift-nest-chord
+
+Case study: `thrift-nest.html`
+
+Recording: https://www.loom.com/share/fb9b9580a6564d639bbef2b03889834c
+
 ## Site stack
 
 - HTML5

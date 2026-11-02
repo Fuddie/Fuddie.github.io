@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A PostgreSQL order-capture demo for a friend's thrift business, with database constraints, duplicate protection and independent SQL verification." />
+  <meta property="og:title" content="Thrift Nest Order Capture | Fuad Adebisi" />
+  <meta property="og:description" content="PostgreSQL record design, API integration and verified pending requests using fictional operational data." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' %3E%3Crect width='40' height='40' rx='10' fill='%23d9ff3f'/%3E%3Ctext x='12' y='29' font-size='24' font-family='sans-serif' fill='%230b0d0f'%3EF%3C/text%3E%3C/svg%3E">
+  <title>Thrift Nest Order Capture | Fuad Adebisi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top" class="jaffle-case">
+  <a class="jaffle-skip" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="brand" href="index.html">FA<span>.</span></a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="case-navigation">☰</button>
+      <div class="nav-links" id="case-navigation">
+        <a href="index.html#projects">Projects</a><a href="#data-model">Data model</a><a href="#verification">Verification</a><a href="mailto:fuddiebiola@gmail.com">Contact</a>
+      </div>
+    </nav>
+  </header>
+  <main id="main-content">
+    <section class="container jaffle-hero">
+      <div class="jaffle-breadcrumb"><a href="index.html#projects">Projects</a><span aria-hidden="true">/</span><span>Thrift Nest</span></div>
+      <div class="jaffle-hero-grid">
+        <div>
+          <p class="eyebrow">POSTGRESQL · API INTEGRATION · DATA QUALITY</p>
+          <h1>Thrift Nest<span>Order capture backed by PostgreSQL.</span></h1>
+          <p class="hero-text">I built a small Chord assistant for a friend's thrift business, then checked its purchase requests against the database. The useful part was making sure the record, the API response and the customer message agreed.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://www.loom.com/share/fb9b9580a6564d639bbef2b03889834c" target="_blank" rel="noopener noreferrer">Watch the demo ↗</a>
+            <a class="button secondary" href="https://github.com/Fuddie/thrift-nest-chord" target="_blank" rel="noopener noreferrer">View source code ↗</a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Project scope">
+          <div class="code-label">THRIFT NEST / PROJECT SCOPE</div>
+          <div class="profile-panel">
+            <div class="profile-row"><span>BUSINESS</span><strong>Friend's online thrift shop</strong></div>
+            <div class="profile-row"><span>BUILD</span><strong>TSG Labs Chord exercise</strong></div>
+            <div class="profile-row"><span>DATA</span><strong>Fictional products and references</strong></div>
+            <div class="profile-row"><span>ACTION</span><strong>Save an unpaid pending request</strong></div>
+            <div class="profile-row"><span>LIMIT</span><strong>No payment or stock reservation</strong></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section container split-section">
+      <div class="section-heading"><p class="eyebrow">01 / BUSINESS PROBLEM</p><h2>Repeated questions and scattered requests.</h2></div>
+      <div class="section-copy">
+        <p>The owner described spending time answering questions about measurements, prices and availability across Instagram and WhatsApp. Tracking what had been discussed, paid for or left pending meant reviewing chat histories and separate records.</p>
+        <p>I kept the build to one workflow: identify an item, retrieve its details, ask for confirmation and save an unpaid purchase request. Only payment secures an item, so recording interest must never imply a reservation or a completed sale.</p>
+        <p>This is a demo based on the owner's account, not a production rollout. I did not establish a dated incident, a handling-time baseline or measured sales impact.</p>
+      </div>
+    </section>
+
+    <section id="data-model" class="section container">
+      <div class="section-heading"><p class="eyebrow">02 / DATA MODEL</p><h2>Make the record definitions explicit.</h2></div>
+      <div class="skills-grid">
+        <article class="skill-card"><h3>products</h3><p>One row per fictional item code. The primary key identifies the item, while price, currency, size, measurements and availability describe the catalogue record.</p><p>Prices are integer kobo in NGN. Measurements keep their units and basis. Missing measurements are not zero, and unknown availability is not available.</p><code>PRIMARY KEY (item_id)</code></article>
+        <article class="skill-card"><h3>orders</h3><p>One unpaid pending request per customer and item. The row records its own ID, catalogue price and currency, pending status, unverified payment status and creation time. It references the product.</p><p>The unique customer/item constraint prevents a retry from becoming a second request. This demo has no cancellation or reorder lifecycle.</p><code>UNIQUE (customer_ref, item_id)</code></article>
+      </div>
+      <p class="jaffle-note">A pending request measures purchase intent. Its amount is not paid sales or revenue. Multiple customers can express interest in the same item because pending requests do not reserve stock.</p>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading"><p class="eyebrow">03 / INTEGRATION</p><h2>Keep each action small and checkable.</h2></div>
+      <ol class="jaffle-pipeline">
+        <li><p class="eyebrow">01 / CONVERSATION</p><h3>Chord skill</h3><p>Answer from connected data, ask for confirmation and distinguish pending intent from payment.</p></li>
+        <li><p class="eyebrow">02 / API</p><h3>Cloudflare Worker</h3><p>Authenticate requests and expose product lookup, request creation and retrieval.</p></li>
+        <li><p class="eyebrow">03 / DATABASE</p><h3>Supabase PostgreSQL</h3><p>Check catalogue price and stock, apply database constraints and store the request.</p></li>
+        <li><p class="eyebrow">04 / VERIFICATION</p><h3>Independent SQL</h3><p>Use DBeaver or Supabase SQL Editor to match the stored row to the conversation.</p></li>
+      </ol>
+      <div class="skills-grid">
+        <article class="skill-card"><h3>Duplicates and uncertain writes</h3><p>A transaction lock serializes creates for the same customer/item, with the unique constraint as the final guard. A row lock keeps the checked product stable until the transaction ends.</p><p>If the write result is uncertain, check the same pair before retrying. A timeout does not prove the write failed.</p></article>
+        <article class="skill-card"><h3>Connections and memory</h3><p>The Worker uses Supabase's HTTP API, with no application PostgreSQL pool or growing user cache. I added byte limits while reading input and database responses, cancelled unused response bodies and cleared the upstream timer.</p><p>These changes were deployed. I did not run a sustained memory profile, load test or connection-pool saturation test.</p></article>
+      </div>
+    </section>
+
+    <section id="verification" class="section container">
+      <div class="section-heading"><p class="eyebrow">04 / EVIDENCE</p><h2>A convincing reply was not proof of a save.</h2></div>
+      <p class="section-intro">During testing, the agent supplied a saved-order ID that did not exist in PostgreSQL. I checked by ID and customer/item, confirmed the absence in a separate SQL query, then used API logs and a fresh lookup to investigate. The original write trace was missing, so I could not establish its exact failure.</p>
+      <p class="section-intro">I required a successful create response followed by retrieval of the same ID. Retrying the original request produced POST and GET logs and a matching row at NGN 13,200, pending with payment unverified. Later saves were also checked against SQL. Recovery worked, but the agent's explanation of its own actions was still inconsistent in a later run.</p>
+      <div class="project-preview" role="group" aria-label="Test evidence and limits">
+        <div class="preview-head"><span>CHECKED DURING THE BUILD</span><span>OCTOBER 2026</span></div>
+        <div class="preview-kpis">
+          <div><span>Local tests passed</span><strong>20</strong></div>
+          <div><span>Local test failures</span><strong>0</strong></div>
+          <div><span>Stored request example</span><strong>₦13,200</strong></div>
+          <div><span>Payment status</span><strong>Unverified</strong></div>
+        </div>
+        <p class="preview-note">The 20 local tests comprise nine checks for the earlier SQLite service and eleven for the PostgreSQL HTTP adapter using simulated responses. They are not 20 live Chord tests. Hosted SQL checks and specific simulator runs are listed separately in the repository.</p>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Fuddie/thrift-nest-chord/blob/main/docs/ACCEPTANCE.md" target="_blank" rel="noopener noreferrer">Read the test evidence ↗</a>
+        <a href="https://github.com/Fuddie/thrift-nest-chord/blob/main/docs/FIELD_NOTES.md" target="_blank" rel="noopener noreferrer">Read the deployment notes ↗</a>
+      </div>
+    </section>
+
+    <section class="section container split-section">
+      <div class="section-heading"><p class="eyebrow">05 / LIMITS AND NEXT STEPS</p><h2>What I would check before real customer use.</h2></div>
+      <div class="section-copy">
+        <p>The agent sometimes asks for a second confirmation. A simulator no-answer incident and inconsistent tool-use narration remain documented. The working examples demonstrate specific saves and retrievals, not production reliability.</p>
+        <p>Real use needs maintained inventory, authenticated customer identity, staff permissions, verified payments and tested human escalation. The current build does not take payments, reserve stock, update Instagram, arrange dispatch or send reminders.</p>
+        <p>I would start with a supervised pilot and compare owner handling time and order errors before and during use. No time-saving or conversion claim has been measured.</p>
+        <p>AI assistance: ChatGPT/Codex helped with the skill, code, tests and troubleshooting. I configured and deployed the integration, ran the conversations and SQL checks, and recorded the demo.</p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading"><p class="eyebrow">06 / REVIEW THE WORK</p><h2>See the conversation, then inspect the records.</h2></div>
+      <div class="tags"><span>PostgreSQL</span><span>SQL</span><span>Supabase</span><span>JavaScript</span><span>Cloudflare Workers</span><span>Chord</span></div>
+      <p class="section-intro">The repository includes the skill, API code, schema, SQL checks, test fixtures and setup instructions. The WhatsApp simulator requires Chord exercise access; the recording provides a walkthrough without that access.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="https://www.loom.com/share/fb9b9580a6564d639bbef2b03889834c" target="_blank" rel="noopener noreferrer">Watch the demo ↗</a>
+        <a class="button secondary" href="https://github.com/Fuddie/thrift-nest-chord" target="_blank" rel="noopener noreferrer">View repository ↗</a>
+        <a class="button secondary" href="https://chat.tsglabs.dev/c/TjEWRNfXvhPO0UxU3kzbeZLI" target="_blank" rel="noopener noreferrer">Simulator with Chord access ↗</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer container"><p>Thrift Nest Order Capture · Fuad Abiola Adebisi</p><a href="#top">Back to top ↑</a></footer>
+  <script src="script.js"></script>
+</body>
+</html>
