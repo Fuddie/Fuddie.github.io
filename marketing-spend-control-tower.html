@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="How I built a tested marketing spend control tower with Python, DuckDB, dbt, Airflow, Streamlit and Wren AI." />
+  <meta property="og:title" content="Marketing Spend Control Tower | Fuad Adebisi" />
+  <meta property="og:description" content="Campaign pacing, attributed revenue, overspend alerts and tested reporting models in one analytics engineering workflow." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' %3E%3Crect width='40' height='40' rx='10' fill='%23d9ff3f'/%3E%3Ctext x='12' y='29' font-size='24' font-family='sans-serif' fill='%230b0d0f'%3EF%3C/text%3E%3C/svg%3E">
+  <title>Marketing Spend Control Tower | Fuad Adebisi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top" class="jaffle-case">
+  <a class="jaffle-skip" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="brand" href="index.html">FA<span>.</span></a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="case-navigation">☰</button>
+      <div class="nav-links" id="case-navigation">
+        <a href="index.html#projects">Projects</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#results">Results</a>
+        <a href="https://github.com/Fuddie/marketing-spend-control-tower" target="_blank" rel="noreferrer">Repository ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="container jaffle-hero">
+      <nav class="jaffle-breadcrumb" aria-label="Breadcrumb"><a href="index.html#projects">Portfolio projects</a><span aria-hidden="true">/</span><span>Marketing Spend Control Tower</span></nav>
+      <div class="jaffle-hero-grid">
+        <div>
+          <p class="eyebrow">ANALYTICS ENGINEERING / MARKETING OPERATIONS</p>
+          <h1>Marketing Spend <span>Control Tower</span></h1>
+          <p class="hero-text">I built a tested analytics workflow that connects campaign spend, budgets, attributed revenue and refunds. It shows current performance, estimates month-end spend and prioritises campaigns that are likely to exceed budget.</p>
+          <p class="jaffle-note">Independent portfolio project using reproducible synthetic data. The dashboard and Wren queries run locally, while the repository contains the complete models, tests, orchestration and setup instructions.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://github.com/Fuddie/marketing-spend-control-tower" target="_blank" rel="noopener noreferrer">View GitHub repository ↗</a>
+            <a class="button secondary" href="#results">View validated results</a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Project at a glance">
+          <div class="code-label">CONTROL TOWER / PROJECT AT A GLANCE</div>
+          <div class="profile-panel">
+            <div class="profile-row"><span>SOURCES</span><strong>6 daily extracts</strong></div>
+            <div class="profile-row"><span>STORE</span><strong>DuckDB</strong></div>
+            <div class="profile-row"><span>TRANSFORM</span><strong>dbt</strong></div>
+            <div class="profile-row"><span>ORCHESTRATE</span><strong>Apache Airflow</strong></div>
+            <div class="profile-row"><span>REPORT</span><strong>Streamlit + Wren AI</strong></div>
+            <div class="profile-row"><span>QUALITY</span><strong>17 Bronze checks + 59 dbt tests</strong></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section container split-section">
+      <div class="section-heading"><p class="eyebrow">01 / BUSINESS PROBLEM</p><h2>Marketing teams need an early warning, not a month-end surprise.</h2></div>
+      <div class="section-copy">
+        <p>Campaign reporting often separates platform spend, budgets, orders and refunds. That makes it difficult to answer whether spend is on plan, whether attributed revenue is reliable and which campaigns need intervention.</p>
+        <p>I designed one workflow around five practical questions:</p>
+        <ul>
+          <li>How much has been spent and what net revenue was attributed to it?</li>
+          <li>Which campaigns are ahead of their expected spending pace?</li>
+          <li>Which campaigns are projected to exceed budget?</li>
+          <li>Which alerts are most urgent?</li>
+          <li>Can the dashboard, alert service and semantic queries use the same definitions?</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="architecture" class="section container">
+      <div class="section-heading"><p class="eyebrow">02 / ARCHITECTURE</p><h2>A layered workflow from source extracts to decisions.</h2></div>
+      <p class="section-intro">Each layer has a clear responsibility, with quality checks before reporting models are used by the dashboard or alert service.</p>
+      <ol class="jaffle-pipeline">
+        <li><p class="eyebrow">01 / INGEST</p><h3>Python + DuckDB</h3><p>Six partitioned CSV extracts are loaded transactionally into typed Bronze tables.</p></li>
+        <li><p class="eyebrow">02 / VALIDATE</p><h3>Bronze checks</h3><p>Seventeen checks cover relationships, dates, amounts, currencies and attribution rules.</p></li>
+        <li><p class="eyebrow">03 / MODEL</p><h3>dbt</h3><p>Staging, intermediate and gold models apply attribution, budget history and pacing logic.</p></li>
+        <li><p class="eyebrow">04 / USE</p><h3>Airflow + reporting</h3><p>Airflow runs the workflow. Streamlit, alerts and Wren consume the gold layer.</p></li>
+      </ol>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading"><p class="eyebrow">03 / GOLD MODELS</p><h2>Three marts serve distinct decisions.</h2></div>
+      <div class="jaffle-model-grid">
+        <article class="skill-card"><h3>Daily performance</h3><p>One row per campaign and date with spend, attributed conversions, gross revenue, completed refunds and attributed net revenue.</p><code>fct_campaign_daily_performance</code></article>
+        <article class="skill-card"><h3>Daily pacing</h3><p>Adds month-to-date spend, expected spend, projected month-end spend, ROAS, pacing ratio and projected budget breach status.</p><code>mart_campaign_daily_pacing</code></article>
+        <article class="skill-card"><h3>Campaign alerts</h3><p>Returns current warning and critical conditions in business review order, including the reason and supporting financial values.</p><code>mart_campaign_alerts</code></article>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading"><p class="eyebrow">04 / METRIC AND ALERT RULES</p><h2>Definitions are explicit and shared.</h2></div>
+      <div class="jaffle-table-wrap">
+        <table class="jaffle-table">
+          <caption>Core business rules</caption>
+          <thead><tr><th scope="col">Rule</th><th scope="col">Definition</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Attributed net revenue</th><td>Completed attributed order revenue minus completed attributed refunds.</td></tr>
+            <tr><th scope="row">ROAS</th><td>Attributed net revenue divided by spend.</td></tr>
+            <tr><th scope="row">Expected spend</th><td>Monthly budget allocated across active campaign days and accumulated through the reporting date.</td></tr>
+            <tr><th scope="row">Pacing ratio</th><td>Month-to-date spend divided by expected spend to date.</td></tr>
+            <tr><th scope="row">Critical alert</th><td>Post-end spend, spend without a budget, or month-to-date spend above budget.</td></tr>
+            <tr><th scope="row">Warning alert</th><td>Pacing ratio above 1.10.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="results" class="section container">
+      <div class="section-heading"><p class="eyebrow">05 / VALIDATED RESULTS</p><h2>The workflow produced consistent totals and two actionable alerts.</h2></div>
+      <div class="metrics jaffle-results">
+        <article><strong>£106,396.96</strong><span>total spend</span></article>
+        <article><strong>£33,856.00</strong><span>attributed net revenue</span></article>
+        <article><strong>0.32x</strong><span>ROAS</span></article>
+      </div>
+      <div class="jaffle-table-wrap">
+        <table class="jaffle-table">
+          <caption>Campaigns projected to exceed budget</caption>
+          <thead><tr><th scope="col">Campaign</th><th scope="col">Budget</th><th scope="col">Projected spend</th><th scope="col">Projected ratio</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Meta Ads Conversions Campaign 08</th><td>£4,000.00</td><td>£6,791.74</td><td>1.70x</td></tr>
+            <tr><th scope="row">Meta Ads Awareness Campaign 12</th><td>£12,000.00</td><td>£17,446.50</td><td>1.45x</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="jaffle-note">The dashboard, alert preview and saved Wren queries returned the same two campaigns and supporting values.</p>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading"><p class="eyebrow">06 / RELIABILITY</p><h2>Quality controls are part of the workflow.</h2></div>
+      <div class="skills-grid">
+        <article class="skill-card"><h3>Source and Bronze controls</h3><p>Complete extracts are required. Ingestion runs inside a transaction, rejects older snapshots and closes database connections after use.</p></article>
+        <article class="skill-card"><h3>dbt validation</h3><p>The final build completed with 3 table models, 8 view models and 59 data tests. All 70 results passed with no warnings or errors.</p></article>
+        <article class="skill-card"><h3>Business assertions</h3><p>Custom tests protect the campaign-date grain, net revenue reconciliation and the rule that post-end spend must be critical.</p></article>
+        <article class="skill-card"><h3>Safe reporting</h3><p>The dashboard opens DuckDB in read-only mode, caches results for five minutes and keeps email delivery disabled unless credentials and the send flag are supplied.</p></article>
+      </div>
+    </section>
+
+    <section class="section container split-section">
+      <div class="section-heading"><p class="eyebrow">07 / COMPATIBILITY DECISION</p><h2>Handle the DuckDB version boundary explicitly.</h2></div>
+      <div class="section-copy">
+        <p>The analytics environment uses DuckDB 2.0.0, while Wren 0.15.0 uses DuckDB 1.5.5. Connecting Wren directly to the newer database produced an incompatible API path.</p>
+        <p>I added a reproducible snapshot process. The main environment exports the three gold marts to Parquet, then the Wren environment rebuilds its own compatible DuckDB file transactionally. Generated snapshots and local connection files remain outside Git.</p>
+        <p>This keeps the analytics warehouse current without hiding the version constraint or requiring a manual table copy.</p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading"><p class="eyebrow">08 / TRADE-OFFS</p><h2>Keep the project honest about its scope.</h2></div>
+      <div class="skills-grid">
+        <article class="skill-card"><h3>Synthetic data</h3><p>The project demonstrates modelling and operational decisions without using private campaign or customer data. Production use would replace the CSV generator with platform and commerce connectors.</p></article>
+        <article class="skill-card"><h3>Local warehouse</h3><p>DuckDB is appropriate for a reproducible portfolio workflow. A multi-user deployment would move the marts to a managed warehouse and add role-based access.</p></article>
+        <article class="skill-card"><h3>Local dashboard</h3><p>The Streamlit application is documented and reproducible but is not presented as a permanently hosted production service.</p></article>
+        <article class="skill-card"><h3>Alert delivery</h3><p>Alerts run in preview mode by default. Resend delivery requires explicit environment variables and a send flag.</p></article>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href="https://github.com/Fuddie/marketing-spend-control-tower" target="_blank" rel="noreferrer">Review the repository ↗</a>
+        <a class="button secondary" href="index.html#projects">← Back to projects</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container"><p>Marketing Spend Control Tower · Fuad Abiola Adebisi</p><a href="#top">Back to top ↑</a></footer>
+  <script src="script.js"></script>
+</body>
+</html>
