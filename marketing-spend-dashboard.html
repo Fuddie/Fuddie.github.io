@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive Marketing Spend Control Tower with verified campaign questions and governed answers." />
+  <title>Marketing Spend Control Tower Dashboard | Fuad Adebisi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#081426; --panel:#101f34; --panel2:#152943; --line:#263d5c; --text:#f4f7fb; --muted:#9fb0c6; --blue:#6f93ff; --purple:#a783ff; --green:#45d19a; --amber:#f4c95d; --red:#ff7070; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:radial-gradient(circle at 65% 10%,#172b4a 0,var(--bg) 45%); color:var(--text); font-family:"DM Sans",sans-serif; min-height:100vh; }
+    a { color:inherit; text-decoration:none; }
+    button,input { font:inherit; }
+    .shell { max-width:1240px; margin:auto; padding:0 28px 60px; }
+    header { border-bottom:1px solid var(--line); background:rgba(8,20,38,.9); position:sticky; top:0; z-index:5; backdrop-filter:blur(14px); }
+    .nav { max-width:1240px; margin:auto; padding:20px 28px; display:flex; justify-content:space-between; align-items:center; }
+    .brand { font-size:23px; font-weight:700; }
+    .brand span { color:var(--blue); }
+    .nav-links { display:flex; gap:24px; color:var(--muted); font-size:14px; }
+    .hero { padding:55px 0 28px; display:flex; justify-content:space-between; gap:30px; align-items:end; }
+    .eyebrow { color:var(--blue); font:500 12px "JetBrains Mono",monospace; letter-spacing:.13em; text-transform:uppercase; }
+    h1 { font-size:clamp(38px,6vw,70px); line-height:.98; margin:14px 0 18px; max-width:760px; }
+    h1 span { background:linear-gradient(90deg,var(--blue),var(--purple)); -webkit-background-clip:text; color:transparent; }
+    .intro { color:var(--muted); max-width:720px; line-height:1.7; }
+    .status { padding:10px 14px; border:1px solid #2b5d55; border-radius:999px; color:#8de8c4; background:#12342f; white-space:nowrap; font-size:13px; }
+    .kpis { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin:26px 0; }
+    .card { background:linear-gradient(145deg,rgba(21,41,67,.96),rgba(13,29,49,.96)); border:1px solid var(--line); border-radius:16px; padding:20px; }
+    .kpi span { display:block; color:var(--muted); font-size:13px; min-height:35px; }
+    .kpi strong { display:block; font-size:27px; margin-top:8px; }
+    .grid { display:grid; grid-template-columns:1.1fr .9fr; gap:16px; margin:16px 0; }
+    h2 { font-size:24px; margin:0 0 8px; }
+    .section-copy { color:var(--muted); margin:0 0 18px; }
+    .bar-row { display:grid; grid-template-columns:1fr 2fr 62px; gap:12px; align-items:center; margin:15px 0; font-size:14px; }
+    .track { height:12px; background:#0a1728; border-radius:99px; overflow:hidden; }
+    .fill { height:100%; background:linear-gradient(90deg,var(--blue),var(--purple)); border-radius:99px; }
+    .fill.warning { background:linear-gradient(90deg,var(--amber),var(--red)); }
+    .alert { padding:16px 0; border-top:1px solid var(--line); }
+    .alert:first-of-type { border-top:0; }
+    .alert-head { display:flex; justify-content:space-between; gap:14px; }
+    .pill { color:#ffd8a3; background:#4b341a; border:1px solid #765126; border-radius:99px; padding:4px 9px; font-size:11px; text-transform:uppercase; }
+    .alert p { color:var(--muted); margin:8px 0 0; font-size:14px; }
+    .questions { margin-top:18px; }
+    .verified { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:18px 0; }
+    .question-button { text-align:left; color:var(--text); background:#11243d; border:1px solid #31527a; border-radius:12px; padding:16px; cursor:pointer; min-height:84px; transition:.2s ease; }
+    .question-button:hover,.question-button:focus { border-color:var(--blue); transform:translateY(-2px); outline:none; }
+    .ask-row { display:grid; grid-template-columns:1fr auto; gap:10px; margin-top:20px; }
+    input { width:100%; padding:15px 16px; border-radius:11px; border:1px solid #31527a; background:#09172a; color:var(--text); outline:none; }
+    input:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(111,147,255,.15); }
+    .run { border:0; border-radius:11px; padding:0 24px; background:#edf2ff; color:#0b1930; font-weight:700; cursor:pointer; }
+    .answer { display:none; margin-top:16px; background:#0b1b30; border:1px solid #31527a; border-left:4px solid var(--green); border-radius:12px; padding:18px; line-height:1.65; }
+    .answer.show { display:block; }
+    .answer table { width:100%; border-collapse:collapse; margin-top:14px; font-size:14px; }
+    th,td { text-align:left; padding:10px; border-bottom:1px solid var(--line); }
+    th { color:var(--muted); font-weight:500; }
+    .scope { margin-top:16px; color:var(--muted); font-size:13px; line-height:1.6; }
+    .actions { display:flex; gap:12px; margin-top:28px; flex-wrap:wrap; }
+    .button { border:1px solid #36577f; border-radius:10px; padding:12px 16px; font-weight:600; }
+    .button.primary { background:#edf2ff; color:#0b1930; border-color:#edf2ff; }
+    footer { color:var(--muted); border-top:1px solid var(--line); padding-top:24px; margin-top:42px; font-size:14px; }
+    @media (max-width:900px) { .kpis{grid-template-columns:repeat(2,1fr)} .grid,.verified{grid-template-columns:1fr} .hero{align-items:start;flex-direction:column} }
+    @media (max-width:600px) { .shell{padding-left:18px;padding-right:18px}.nav{padding:16px 18px}.nav-links a:not(:last-child){display:none}.kpis{grid-template-columns:1fr}.ask-row{grid-template-columns:1fr}.run{padding:13px}.bar-row{grid-template-columns:1fr 1.4fr 52px} }
+  </style>
+</head>
+<body>
+<header><nav class="nav"><a class="brand" href="index.html">FA<span>.</span></a><div class="nav-links"><a href="marketing-spend-control-tower.html">Case study</a><a href="https://github.com/Fuddie/marketing-spend-control-tower" target="_blank" rel="noreferrer">Repository</a></div></nav></header>
+<main class="shell">
+  <section class="hero">
+    <div><p class="eyebrow">Campaign performance / governed snapshot</p><h1>Marketing Spend <span>Control Tower</span></h1><p class="intro">Explore validated campaign totals, budget pacing and prioritised alerts. Use the verified questions or type a supported business question in English.</p></div>
+    <span class="status">Validated snapshot</span>
+  </section>
+  <section class="kpis" aria-label="Key metrics">
+    <article class="card kpi"><span>Total spend</span><strong>£106,396.96</strong></article>
+    <article class="card kpi"><span>Attributed net revenue</span><strong>£33,856.00</strong></article>
+    <article class="card kpi"><span>ROAS</span><strong>0.32x</strong></article>
+    <article class="card kpi"><span>Attributed conversions</span><strong>310</strong></article>
+    <article class="card kpi"><span>Active alerts</span><strong>2</strong></article>
+  </section>
+  <section class="grid">
+    <article class="card">
+      <h2>Projected budget position</h2><p class="section-copy">Current budget compared with projected month-end spend.</p>
+      <div class="bar-row"><span>Conversions 08</span><div class="track"><div class="fill warning" style="width:85%"></div></div><strong>1.70x</strong></div>
+      <div class="bar-row"><span>Awareness 12</span><div class="track"><div class="fill warning" style="width:72.5%"></div></div><strong>1.45x</strong></div>
+    </article>
+    <article class="card">
+      <h2>Prioritised alerts</h2><p class="section-copy">Campaigns that require review.</p>
+      <div class="alert"><div class="alert-head"><strong>Meta Ads Conversions Campaign 08</strong><span class="pill">Warning</span></div><p>Projected spend £6,791.74 against a £4,000.00 budget.</p></div>
+      <div class="alert"><div class="alert-head"><strong>Meta Ads Awareness Campaign 12</strong><span class="pill">Warning</span></div><p>Projected spend £17,446.50 against a £12,000.00 budget.</p></div>
+    </article>
+  </section>
+  <section class="card questions">
+    <p class="eyebrow">Verified questions</p>
+    <h2>Ask a business question</h2>
+    <p class="section-copy">Each verified answer uses the governed dbt mart definitions documented in the repository.</p>
+    <div class="verified">
+      <button class="question-button" data-question="attention">Which campaigns need immediate attention, and why?</button>
+      <button class="question-button" data-question="totals">What are total spend, attributed net revenue, and ROAS?</button>
+      <button class="question-button" data-question="budget">Which campaigns are projected to exceed budget, and by how much?</button>
+    </div>
+    <form id="ask-form" class="ask-row">
+      <label for="question" style="position:absolute;left:-9999px">Business question</label>
+      <input id="question" autocomplete="off" placeholder="Ask about spend, revenue, ROAS, alerts, or projected budget..." />
+      <button class="run" type="submit">Run question</button>
+    </form>
+    <div id="answer" class="answer" aria-live="polite"></div>
+    <p class="scope">This public dashboard answers verified questions and common variations using the validated snapshot. Broader natural-language analysis is available through the local Wren setup in the repository.</p>
+  </section>
+  <div class="actions"><a class="button primary" href="marketing-spend-control-tower.html">Read the case study</a><a class="button" href="https://github.com/Fuddie/marketing-spend-control-tower" target="_blank" rel="noreferrer">View repository</a></div>
+  <footer>Marketing Spend Control Tower · Fuad Abiola Adebisi</footer>
+</main>
+<script>
+const answer = document.getElementById("answer");
+const input = document.getElementById("question");
+const answers = {
+  attention: '<strong>2 campaigns need immediate attention.</strong><table><thead><tr><th>Campaign</th><th>Reason</th></tr></thead><tbody><tr><td>Meta Ads Conversions Campaign 08</td><td>Projected at 1.70x budget</td></tr><tr><td>Meta Ads Awareness Campaign 12</td><td>Projected at 1.45x budget</td></tr></tbody></table>',
+  totals: '<strong>Total spend is £106,396.96, attributed net revenue is £33,856.00, and ROAS is 0.32x.</strong>',
+  budget: '<strong>2 campaigns are projected to exceed budget.</strong><table><thead><tr><th>Campaign</th><th>Budget</th><th>Projected spend</th><th>Projected overspend</th></tr></thead><tbody><tr><td>Meta Ads Awareness Campaign 12</td><td>£12,000.00</td><td>£17,446.50</td><td>£5,446.50</td></tr><tr><td>Meta Ads Conversions Campaign 08</td><td>£4,000.00</td><td>£6,791.74</td><td>£2,791.74</td></tr></tbody></table>'
+};
+function showAnswer(key) { answer.innerHTML = answers[key]; answer.classList.add("show"); answer.scrollIntoView({behavior:"smooth",block:"nearest"}); }
+document.querySelectorAll("[data-question]").forEach(button => button.addEventListener("click", () => { input.value = button.textContent; showAnswer(button.dataset.question); }));
+document.getElementById("ask-form").addEventListener("submit", event => {
+  event.preventDefault();
+  const question = input.value.trim().toLowerCase();
+  if (!question) { answer.textContent = "Enter a business question first."; answer.classList.add("show"); return; }
+  if (question.includes("attention") || question.includes("alert") || question.includes("urgent")) return showAnswer("attention");
+  if ((question.includes("total") && question.includes("spend")) || (question.includes("revenue") && question.includes("roas"))) return showAnswer("totals");
+  if ((question.includes("budget") || question.includes("overspend")) && (question.includes("project") || question.includes("exceed") || question.includes("over"))) return showAnswer("budget");
+  if (question.includes("how many") && question.includes("alert")) return showAnswer("attention");
+  answer.innerHTML = '<strong>This public snapshot does not have a verified answer for that question.</strong><br>Try asking about total spend, attributed net revenue, ROAS, active alerts, or projected budget overspend. Broader questions can be run with the local Wren setup.';
+  answer.classList.add("show");
+});
+</script>
+</body>
+</html>
